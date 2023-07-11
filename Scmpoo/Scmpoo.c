@@ -99,8 +99,8 @@ WORD word_A29A[8] = { /* Special action table. */
     116, 121, 126, 147,
     128, 135, 142, 147
 };
-int word_A2AA = 1; /* Facing direction. 1 = left, -1 = right */
-int word_A2AC = 1; /* Facing direction (sub). 1 = left, -1 = right */
+int facing_direction = 1; /* Facing direction. 1 = left, -1 = right */
+int facing_direction_sub = 1; /* Facing direction (sub). 1 = left, -1 = right */
 WORD word_A2B4[6][8] = { /* Blink animations. */
     {7, 8, 7, 6, 7, 8, 7, 6},
     {32, 33, 32, 31, 32, 33, 32, 31},
@@ -117,50 +117,62 @@ WORD word_A324[20] = { /* Collision animation with obsolete height offset. */
     62, 63, 63, 64, 64, 65, 65, 66, 66, 66,
     0, 10, 17, 21, 22, 21, 17, 10, 0, 0
 };
-WORD word_A34C[11] = { /* Yawn animation. */
-    37, 38, 39, 39, 39, 38, 37, 3, 37, 3, 0
+WORD animation_snap[29] = { /* Taking picture (snap) animation. */
+        6, 6, 6, 6, 37, 37, 37,38, 38, 38, 38, 38, 38, 38, 39, 39, 174, 39, 38, 38, 38, 38,38, 37, 37, 6, 6, 6, 0,
 };
-WORD word_A362[8] = { /* Baa animation. */
-    71, 72, 71, 72, 71, 72, 3, 0
+WORD animation_burp[8] = { /* Baa animation. */
+        71, 72, 71, 72, 71, 72, 3, 0
 };
-WORD word_A372[13] = { /* Sneeze animation. */
-    107, 108, 109, 109, 3, 3, 3, 110, 111, 110, 111, 3, 0
+WORD animation_thicc[2] = { /* Sneeze animation. */
+        6, 106
 };
 WORD word_A38C[6] = { /* Amazed animation. */
     50, 51, 50, 51, 3, 0
 };
-WORD word_A398[35] = { /* Eat animation. */
-    58, 150, 60, 61, 60, 61, 60, 61, 58, 151, 60, 61, 60, 61, 60, 61, 2, 58, 152, 60, 61, 60, 61, 60, 61, 58, 153, 60, 61, 60, 61, 60, 61, 3, 0
+WORD animation_beer[35] = { /* Eat animation. */
+        58, 150, 60, 61, 60, 61, 60, 61, 58, 151, 60, 61, 60, 61, 60, 61, 2, 58, 152, 60, 61, 60, 61, 60, 61, 58, 153,
+        60, 61, 60, 61, 60, 61, 3, 0
 };
-WORD word_A3DE[34] = { /* Burn animation. */
-    134, 134, 134, 134, 134, 134, 134, 134, 135, 136, 137, 138, 137, 138, 137, 138, 137, 138, 137, 138, 139, 140, 141, 142, 143, 144, 145, 144, 145, 144, 145, 144, 145, 0
+WORD animation_falling_van[2] = { /* Burn animation. (Falling jacex van)*/
+        145, 0
 };
 WORD word_A422[13] = { /* Roll over animation (not used). */
-    3, 93, 99, 100, 99, 100, 99, 100, 99, 100, 95, 3, 0
+        3, 93, 99, 100, 99, 100, 99, 100, 99, 100, 95, 3, 0
 };
 WORD word_A43C[8] = { /* Get up animation (left). */
-    48, 48, 48, 49, 13, 12, 3, 0
+        48, 48, 48, 49, 13, 12, 3, 0
 };
 WORD word_A44C[8] = { /* Get up animation (right). */
-    48, 48, 48, 49, 13, 14, 3, 0
+        48, 48, 48, 49, 13, 14, 3, 0
 };
-WORD word_A45C[28] = { /* Merry 2 animation. */
-    130, 130, 130, 130, 130, 129, 129, 128, 128, 127, 127, 127, 6, 6, 6, 6, 7, 8, 7, 6, 7, 8, 7, 6, 6, 6, 6, 0
+WORD animation_drift[17] = { /* Van drift animation. */
+        134, 135, 136, 137, 138, 139, 140, 141, 142, 143,144, 154,155,156,157,0
 };
-WORD word_A494[5] = { /* Burn bathtub splash animation. */
-    147, 148, 147, 146, 0
+WORD animation_crash[5] = { /* JX Van crash animation. */
+        147, 148, 148, 148, 0
 };
-WORD word_A49E[55] = { /* Burn get out of bathtub animation. */
-    169, 169, 169, 169, 169, 169, 169, 169, 170, 171, 170, 169, 170, 171, 170, 169, 169, 169, 169, 81, 81, 81, 81, 81, 81, 81, 81, 85, 85, 85, 85, 85, 85, 85, 85, 34, 34, 34, 34, 35, 36, 35, 34, 35, 36, 35, 34, 34, 34, 10, 10, 9, 9, 3, 0
+WORD word_A49E[89] = { /* get out of JX Van animation. */
+        169, 169, 169, 169, 169, 169,
+        170, 170, 170, 170, 170, 170, 170, 170, 170, 170,
+        171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171, 171,
+        172, 172, 172, 172, 172, 172, 172, 172, 172,
+        67,67,67,
+        45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45, 45,45,
+        79,79,79,
+        34, 34, 34, 34, 35, 36, 35, 34, 35, 36, 35, 34, 34, 34,
+        10, 10, 9, 9, 3, 0
 };
-WORD word_A50C[12] = { /* Blush animation. */
-    3, 127, 128, 129, 130, 130, 130, 129, 128, 127, 127, 0
+WORD animation_blush[19] = { /* Blush animation. */
+        6, 6, 128, 129, 130, 129, 128, 128, 129, 130, 130, 130,130,130, 129, 128, 0
 };
-WORD word_A524[9] = { /* Roll animation. */
-    119, 120, 121, 122, 123, 124, 125, 126, 0
+WORD word_A524[9] = { /* Jerma walk */
+        119, 120, 121, 122, 123, 124, 125, 126, 0
 };
 WORD word_A536[8] = { /* Spin animation. 0-3: face, 4-7: back */
-    3, 9, 10, 11, 2, 14, 13, 12
+        3, 9, 10, 11, 2, 14, 13, 12
+};
+WORD animation_nose_pick[13] = { /* Nose picking animation */
+        6, 103, 104, 105, 104, 105, 104, 105, 104, 105, 103, 6, 0
 };
 WORD word_A798 = 0; /* Has cursor position changed in current timer period? */
 int word_A79A = 0; /* Cursor position with respect to screen, X-coordinate */
@@ -203,18 +215,18 @@ int word_A7F8 = 0; /* Sprite height for previous frame. */
 WORD word_A7FA = 0; /* Current frame rectangle and previous frame rectangle have no intersecion? (unused) */
 WORD word_A7FC = 0; /* Is gravity enabled? */
 WORD word_A7FE = 0; /* Is collision with visible window enabled? */
-int word_A800 = 0; /* Current X-coordinate. */
-int word_A802 = 0; /* Current Y-coordinate. */
-int word_A804 = 0; /* Sprite index. */
-int word_A806 = 0; /* Vertical speed. */
+int x_curr = 0; /* Current X-coordinate. */
+int y_curr = 0; /* Current Y-coordinate. */
+int sprite_index = 0; /* Sprite index. */
+int y_speed = 0; /* Vertical speed. */
 int word_A808 = 0; /* Horizontal speed. */
 int word_A80C = 0; /* Y-coordinate memory. */
-int word_A80E = 0; /* Current X-coordinate (sub). */
-int word_A810 = 0; /* Current Y-coordinate (sub). */
-int word_A812 = 0; /* Sprite index (sub). */
+int x_sub = 0; /* Current X-coordinate (sub). */
+int y_sub = 0; /* Current Y-coordinate (sub). */
+int sprite_index_sub = 0; /* Sprite index (sub). */
 HWND word_A81C = NULL; /* Active window or window to land on. */
 RECT stru_A81E = {0L, 0L, 0L, 0L}; /* Rectangle of active window or window to land on. */
-int word_A826 = 0; /* Animation frame counter. */
+int animation_frame = 0; /* Animation frame counter. */
 int word_A828 = 0; /* Random duration period counter. */
 int word_A82A = 0; /* Random case number for action. */
 WORD word_A82C = 0; /* Unused. */
@@ -223,7 +235,7 @@ int word_A830 = 0; /* Current time hour. */
 int word_A832 = 0; /* Remaining times for chime. */
 DWORD dword_A834 = 0; /* Tick count. */
 int word_A838 = 0; /* Time check period counter. */
-int word_A83A = 0; /* Frame period counter. */
+int frame_period_counter = 0; /* Frame period counter. */
 int word_A83C = 0; /* Target X-coordinate for window edge attachment. */
 int word_A83E = 0; /* Target Y-coordinate for window edge attachment. */
 WORD word_A840 = 0; /* Bounce when falling? */
@@ -263,12 +275,12 @@ int word_A892 = 0; /* Screen Y-coordinate for previous frame (sub). */
 int word_A894 = 0; /* Sprite width for previous frame (sub). */
 int word_A896 = 0; /* Sprite height for previous frame (sub). */
 WORD word_A898 = 0; /* Current frame rectangle and previous frame rectangle have no intersecion? (sub) (unused) */
-WORD word_A8A0 = 0; /* State. */
-spriteinfo stru_A8A2[512] = {{{NULL, NULL}, 0, 0, 0, 0}}; /* Sprite list. First 256 for left-facing sprites, last 256 for right-facing sprites. */
+WORD poo_state = 0; /* State. */
+spriteinfo sprites[512] = {{{NULL, NULL}, 0, 0, 0, 0}}; /* Sprite list. First 256 for left-facing sprites, last 256 for right-facing sprites. */
 int word_C0A4 = 0; /* No mouse action consecutive period counter. */
 UINT word_C0AC = 0U; /* Configuration: Chime */
 WORD word_C0AE = 0; /* Screen Mate window on top of subwindow? (unused) */
-HWND word_C0B0 = NULL; /* Self instance window handle. */
+HWND dude = NULL; /* Self instance window handle. */
 HBITMAP word_C0B2 = NULL; /* UFO beam render target. */
 HBRUSH word_C0B4 = NULL; /* UFO beam paint colour brush. */
 UINT word_C0B6 = 0U; /* Configuration: Always moving */
@@ -293,7 +305,7 @@ HINSTANCE word_CA58 = NULL; /* Current instance. */
 UINT word_CA5A = 0U; /* Configuration: Cry */
 int word_CA5C = 0; /* UFO beam height (sub). */
 WORD word_CA5E = 0; /* Unused. */
-HWND word_CA60[9] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; /* Known instance list. When no other instance exists, [8] is used to store subwindow handle. */
+HWND instances[9] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}; /* Known instance list. When no other instance exists, [8] is used to store subwindow handle. */
 int word_CA72 = 0; /* UFO beam height. */
 int word_CA74 = 0; /* Number of currently visible windows. */
 WORD word_CA76 = 0; /* Sleeping after timeout? */
@@ -301,6 +313,12 @@ WORD word_CA78 = 0; /* Unused. */
 #ifdef _WIN32
 HWND ownerwindow = NULL;
 #endif
+
+int drift_accel = 0;
+#define DEBUG 1005
+#define FADE_OUT_INDEX 175
+#define DRIFT_SPEED 35
+#define MAX_INSTANCES 32
 
 void PASCAL sub_10(void FAR *, void FAR *);
 int PASCAL sub_114(void FAR *, void FAR *, int);
@@ -319,10 +337,10 @@ void sub_1DDC(void);
 LRESULT CALLBACK sub_1DF3(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK sub_2699(HWND, UINT, WPARAM, LPARAM);
 BOOL CALLBACK sub_27FF(HWND, UINT, WPARAM, LPARAM);
-BOOL CALLBACK sub_292A(HWND, UINT, WPARAM, LPARAM);
+BOOL CALLBACK debug_window(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void sub_2A21(void);
-void sub_2A96(void);
-void sub_2ABF(HWND);
+void destroy_subwindow(void);
+void place_window_as_top(HWND arg_0);
 void sub_2B01(HWND, HWND);
 BOOL sub_2B30(HDC, spriteinfo *, int, int);
 void sub_2EEC(spriteinfo *);
@@ -350,15 +368,15 @@ int sub_419E(HWND, int, int, int, int);
 void sub_4210(int, UINT, WORD);
 void sub_428E(void);
 void sub_42AA(LPCSTR);
-void sub_42C8(int, UINT, WORD);
+void play_sound(int arg_0, UINT arg_2, WORD arg_4);
 BOOL sub_42F3(HDC);
 void sub_44ED(void);
 void sub_4559(void);
 void sub_4614(BOOL);
 void sub_46D2(void);
 void sub_46F7(void);
-void sub_4807(int, int, int);
-void sub_488C(int, int, int);
+void update_sprite(int, int, int);
+void update_sprite_sub(int, int, int);
 BOOL sub_48F3(HWND);
 void sub_491D(HWND, LPRECT);
 void sub_496F(int);
@@ -368,13 +386,13 @@ int sub_4C91(int, int);
 void sub_4CE1(void);
 void sub_4CF8(void);
 void sub_8FD7(int);
-void sub_904A(WPARAM);
+void set_state_debug(WPARAM arg_0);
 void sub_91CD(int, int);
 BOOL sub_9200(HWND);
 void sub_930F();
 void sub_9350(int, int, int);
 void sub_93DF(HWND);
-void sub_9438(HWND);
+void fade_out(HWND arg_0);
 BOOL sub_9A49(HWND);
 
 /* Make mask bitmap image out of the first pixel (by simulating x86 assembly). */
@@ -1152,254 +1170,255 @@ LRESULT CALLBACK sub_1DF3(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             }
         }
 #endif
-        DragAcceptFiles(hWnd, TRUE);
-        word_C0B0 = hWnd;
-        sub_2F36();
-        if (word_CA3E != 0) {
-            SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-        }
-        var_2 = GetDC(hWnd);
-        var_A = FindResource(word_CA58, MAKEINTRESOURCE(101), RT_BITMAP);
-        var_8 = LoadResource(word_CA58, var_A);
-        var_6 = LockResource(var_8);
-        var_E = (void FAR *)((BYTE FAR *)var_6 + *(WORD FAR *)var_6 + sub_155A(var_6));
-        word_CA4A = sub_1658(var_2, var_6);
-        FreeResource(var_8);
-        SelectPalette(var_2, word_CA4A, FALSE);
-        RealizePalette(var_2);
-        if (!sub_42F3(var_2)) {
-            MessageBox(hWnd, "メモリが不足しています", "Screen Mate", MB_ICONHAND | MB_OK);
+            DragAcceptFiles(hWnd, TRUE);
+            dude = hWnd;
+            sub_2F36();
+            if (word_CA3E != 0) {
+                SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+            }
+            var_2 = GetDC(hWnd);
+            var_A = FindResource(word_CA58, MAKEINTRESOURCE(101), RT_BITMAP);
+            var_8 = LoadResource(word_CA58, var_A);
+            var_6 = LockResource(var_8);
+            var_E = (void FAR *) ((BYTE FAR *) var_6 + *(WORD FAR *) var_6 + sub_155A(var_6));
+            word_CA4A = sub_1658(var_2, var_6);
+            FreeResource(var_8);
+            SelectPalette(var_2, word_CA4A, FALSE);
+            RealizePalette(var_2);
+            if (!sub_42F3(var_2)) {
+                MessageBox(hWnd, "メモリが不足しています", "Screen Mate", MB_ICONHAND | MB_OK);
+                ReleaseDC(hWnd, var_2);
+                return -1;
+            }
             ReleaseDC(hWnd, var_2);
-            return -1;
-        }
-        ReleaseDC(hWnd, var_2);
-        if (!sub_306A(hWnd)) {
-            MessageBox(hWnd, "メモリが不足しています", "Screen Mate", MB_ICONHAND | MB_OK);
-            return -1;
-        }
-        SetTimer(hWnd, 1U, 108U, NULL);
-        break;
-    case WM_DROPFILES:
-        if (word_CA60[8] == NULL) {
-            if (DragQueryFile((HDROP)wParam, 0U, var_122, 260U) != 0U) {
-                sub_42AA(var_122);
-                sub_8FD7(4);
+            if (!sub_306A(hWnd)) {
+                MessageBox(hWnd, "メモリが不足しています", "Screen Mate", MB_ICONHAND | MB_OK);
+                return -1;
             }
-        }
-        DragFinish((HDROP)wParam);
-        break;
-    case WM_USER + 1:
-        switch (lParam) {
-        case 0x202:
-        case 0x205:
-            if (word_C0AE != 0) {
-                if (word_CA60[8] != NULL) {
-                    sub_2ABF(word_CA60[8]);
-                }
-                sub_2ABF(hWnd);
-            } else {
-                sub_2ABF(hWnd);
-                if (word_CA60[8] != NULL) {
-                    sub_2ABF(word_CA60[8]);
-                }
-            }
-            sub_2ABF(hWnd);
-            *(HMENU *)var_122 = CreatePopupMenu();
-            AppendMenu(*(HMENU *)var_122, 0U, 101U, "Screen Mateの設定...");
-            AppendMenu(*(HMENU *)var_122, 0U, IDCANCEL, "Screen Mateの終了");
-            GetCursorPos(&var_126);
-            TrackPopupMenu(*(HMENU *)var_122, 0U, var_126.x, var_126.y, 0, hWnd, NULL);
-            DestroyMenu(*(HMENU *)var_122);
-            return 0;
-        default:
+            SetTimer(hWnd, 1U, 108U, NULL);
             break;
-        }
-        return 0;
-    case WM_WINDOWPOSCHANGING:
-        windowpos = (LPWINDOWPOS)lParam;
-        if (word_A7A2 != 0) {
-            windowpos = (LPWINDOWPOS)lParam;
-        }
-        windowpos->flags |= SWP_NOCOPYBITS;
-        word_A7AC = 1;
-        return 0;
-    case WM_WINDOWPOSCHANGED:
-        return 0;
-    case WM_TIMER:
-        if (word_C0BA != 0) {
-            word_C0BA -= 1;
-            return 0;
-        }
-        if (word_C0B6 == 0) {
-            GetCursorPos(&var_1E);
-            if (stru_A7B0.x != var_1E.x || stru_A7B0.y != var_1E.y) {
-                stru_A7B0.x = var_1E.x;
-                stru_A7B0.y = var_1E.y;
-                word_A798 = 1;
-            }
-            if (word_CA76 != 0) {
-                if (word_A798 != 0) {
-                    word_CA76 = 0;
-                    word_C0A4 = 0;
-                    sub_8FD7(0);
+        case WM_DROPFILES:
+            if (instances[MAX_INSTANCES-1] == NULL) {
+                if (DragQueryFile((HDROP) wParam, 0U, var_122, 260U) != 0U) {
+                    sub_42AA(var_122);
+                    sub_8FD7(4);
                 }
-            } else {
-                if (word_A798 != 0) {
-                    word_A798 = 0;
-                    word_C0A4 = 0;
+            }
+            DragFinish((HDROP) wParam);
+            break;
+        case WM_USER + 1:
+            switch (lParam) {
+                case 0x202:
+                case 0x205:
+                    if (word_C0AE != 0) {
+                        if (instances[MAX_INSTANCES-1] != NULL) {
+                            place_window_as_top(instances[MAX_INSTANCES-1]);
+                        }
+                        place_window_as_top(hWnd);
+                    } else {
+                        place_window_as_top(hWnd);
+                        if (instances[MAX_INSTANCES-1] != NULL) {
+                            place_window_as_top(instances[MAX_INSTANCES-1]);
+                        }
+                    }
+                    place_window_as_top(hWnd);
+                    *(HMENU *) var_122 = CreatePopupMenu();
+                    AppendMenu(*(HMENU *) var_122, 0U, 101U, "Screen Mateの設定...");
+                    AppendMenu(*(HMENU *) var_122, 0U, IDCANCEL, "Screen Mateの終了");
+                    GetCursorPos(&var_126);
+                    TrackPopupMenu(*(HMENU *) var_122, 0U, var_126.x, var_126.y, 0, hWnd, NULL);
+                    DestroyMenu(*(HMENU *) var_122);
+                    return 0;
+                default:
+                    break;
+            }
+            return 0;
+        case WM_WINDOWPOSCHANGING:
+            windowpos = (LPWINDOWPOS) lParam;
+            if (word_A7A2 != 0) {
+                windowpos = (LPWINDOWPOS) lParam;
+            }
+            windowpos->flags |= SWP_NOCOPYBITS;
+            word_A7AC = 1;
+            return 0;
+        case WM_WINDOWPOSCHANGED:
+            return 0;
+        case WM_TIMER:
+            if (word_C0BA != 0) {
+                word_C0BA -= 1;
+                return 0;
+            }
+            if (word_C0B6 == 0) {
+                GetCursorPos(&var_1E);
+                if (stru_A7B0.x != var_1E.x || stru_A7B0.y != var_1E.y) {
+                    stru_A7B0.x = var_1E.x;
+                    stru_A7B0.y = var_1E.y;
+                    word_A798 = 1;
+                }
+                if (word_CA76 != 0) {
+                    if (word_A798 != 0) {
+                        word_CA76 = 0;
+                        word_C0A4 = 0;
+                        sub_8FD7(0);
+                    }
                 } else {
-                    if (word_C0A4++ > 300) {
-                        sub_8FD7(3);
+                    if (word_A798 != 0) {
+                        word_A798 = 0;
+                        word_C0A4 = 0;
+                    } else {
+                        if (word_C0A4++ > 300) {
+                            sub_8FD7(3);
+                        }
                     }
                 }
             }
-        }
-        word_A7AC = 0;
-        word_C0B0 = hWnd;
-        sub_4CF8();
-        sub_3284(hWnd);
-        sub_3717(hWnd);
-        word_A7A2 = 1;
-        return 0;
-    case WM_USER:
-        if (wParam == 1) {
-            sub_3D5F((HWND)lParam);
-        }
-        if (wParam == 2) {
-            sub_3DA7((HWND)lParam);
-        }
-        return 0;
-    case WM_PAINT:
-        if (word_A7AC != 0) {
             word_A7AC = 0;
-            ValidateRect(hWnd, NULL);
+            dude = hWnd;
+            sub_4CF8();
+            sub_3284(hWnd);
+            sub_3717(hWnd);
+            word_A7A2 = 1;
             return 0;
-        }
-        sub_3237(hWnd);
-        ValidateRect(hWnd, NULL);
-        return 0;
-        GetWindowRect(hWnd, &var_1A);
-        if (stru_A7A4.top == var_1A.top && stru_A7A4.bottom == var_1A.bottom && stru_A7A4.left == var_1A.left && stru_A7A4.right == var_1A.right) {
+        case WM_USER:
+            if (wParam == 1) {
+                sub_3D5F((HWND) lParam);
+            }
+            if (wParam == 2) {
+                sub_3DA7((HWND) lParam);
+            }
+            return 0;
+        case WM_PAINT:
+            if (word_A7AC != 0) {
+                word_A7AC = 0;
+                ValidateRect(hWnd, NULL);
+                return 0;
+            }
             sub_3237(hWnd);
             ValidateRect(hWnd, NULL);
             return 0;
-        }
-        GetWindowRect(hWnd, &stru_A7A4);
-        ValidateRect(hWnd, NULL);
-        return 0;
-        break;
-    case WM_QUIT:
-        return 0;
-    case WM_COMMAND:
-        switch (wParam) {
-        case 101U:
-            SendMessage(hWnd, WM_USER + 2, 0, 0);
-            break;
-        case IDCANCEL:
-            DestroyWindow(hWnd);
+            GetWindowRect(hWnd, &var_1A);
+            if (stru_A7A4.top == var_1A.top && stru_A7A4.bottom == var_1A.bottom && stru_A7A4.left == var_1A.left &&
+                stru_A7A4.right == var_1A.right) {
+                sub_3237(hWnd);
+                ValidateRect(hWnd, NULL);
+                return 0;
+            }
+            GetWindowRect(hWnd, &stru_A7A4);
+            ValidateRect(hWnd, NULL);
             return 0;
+            break;
+        case WM_QUIT:
+            return 0;
+        case WM_COMMAND:
+            switch (wParam) {
+                case 101U:
+                    SendMessage(hWnd, WM_USER + 2, 0, 0);
+                    break;
+                case IDCANCEL:
+                    DestroyWindow(hWnd);
+                    return 0;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case WM_LBUTTONDOWN:
+        case WM_RBUTTONDOWN:
+            if (instances[MAX_INSTANCES-1] != NULL) {
+                break;
+            }
+            if (word_A79E != 0) {
+                break;
+            }
+            SetCapture(hWnd);
+            GetWindowRect(hWnd, &var_1A);
+            word_A79A = (short) LOWORD(lParam) + var_1A.left;
+            word_A79C = (short) HIWORD(lParam) + var_1A.top;
+            word_A79E = 1;
+            sub_8FD7(1);
+            sub_3284(hWnd);
+            sub_3717(hWnd);
+            break;
+        case WM_MOUSEMOVE:
+            if (word_A79E == 0) {
+                break;
+            }
+            GetWindowRect(hWnd, &var_1A);
+            var_10 = (short) LOWORD(lParam) + var_1A.left;
+            var_12 = (short) HIWORD(lParam) + var_1A.top;
+            if (word_A79A == var_10 && word_A79C == var_12) {
+                break;
+            }
+            sub_91CD(var_10 - word_A79A, var_12 - word_A79C);
+            word_A79A = var_10;
+            word_A79C = var_12;
+            sub_3284(hWnd);
+            sub_3717(hWnd);
+            break;
+        case WM_RBUTTONUP:
+            if (word_A7A0 != 0) {
+                DestroyWindow(hWnd);
+                break;
+            }
+        case WM_LBUTTONUP:
+            if (word_A79E != 0) {
+                GetWindowRect(hWnd, &var_1A);
+                var_10 = (short) LOWORD(lParam) + var_1A.left;
+                var_12 = (short) HIWORD(lParam) + var_1A.top;
+                sub_91CD(var_10 - word_A79A, var_12 - word_A79C);
+                sub_8FD7(0);
+                if (uMsg == WM_RBUTTONUP) {
+                    sub_8FD7(2);
+                }
+                sub_3284(hWnd);
+                sub_3717(hWnd);
+                ReleaseCapture();
+                word_A79E = 0;
+            }
+            break;
+        case WM_RBUTTONDBLCLK:
+            word_A7A0 = 1;
+            break;
+        case WM_LBUTTONDBLCLK:
+        case WM_USER + 2:
+            *(WORD *) var_122 = word_CA3E;
+            var_128 = word_CA42;
+            dude = hWnd;
+            if ((HIBYTE(GetKeyState(VK_SHIFT)) & 0x80) != 0 && (HIBYTE(GetKeyState(VK_CONTROL)) & 0x80) != 0) {
+                proc = MakeProcInstance((FARPROC) debug_window, word_CA58);
+                DialogBox(word_CA58, MAKEINTRESOURCE(108), hWnd, (DLGPROC) proc);
+            } else {
+                proc = MakeProcInstance((FARPROC) sub_27FF, word_CA58);
+                DialogBox(word_CA58, MAKEINTRESOURCE(107), hWnd, (DLGPROC) proc);
+            }
+            FreeProcInstance(proc);
+            sub_3237(hWnd);
+            if (*(WORD *) var_122 != word_CA3E) {
+                if (word_CA3E != 0) {
+                    SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+                } else {
+                    SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+                }
+            }
+            if (var_128 != word_CA42 && word_CA42 != 0) {
+                sub_8FD7(2);
+            }
+            break;
+        case WM_DESTROY:
+            sub_3D12(hWnd);
+            if (instances[MAX_INSTANCES-1] != NULL) {
+                destroy_subwindow();
+            }
+            KillTimer(hWnd, 1U);
+            sub_428E();
+            sub_3119((WORD) 0);
+            sub_44ED();
+            DeleteObject(word_CA4A);
+            DragAcceptFiles(hWnd, FALSE);
+            PostQuitMessage(0);
             break;
         default:
             break;
-        }
-        break;
-    case WM_LBUTTONDOWN:
-    case WM_RBUTTONDOWN:
-        if (word_CA60[8] != NULL) {
-            break;
-        }
-        if (word_A79E != 0) {
-            break;
-        }
-        SetCapture(hWnd);
-        GetWindowRect(hWnd, &var_1A);
-        word_A79A = (short)LOWORD(lParam) + var_1A.left;
-        word_A79C = (short)HIWORD(lParam) + var_1A.top;
-        word_A79E = 1;
-        sub_8FD7(1);
-        sub_3284(hWnd);
-        sub_3717(hWnd);
-        break;
-    case WM_MOUSEMOVE:
-        if (word_A79E == 0) {
-            break;
-        }
-        GetWindowRect(hWnd, &var_1A);
-        var_10 = (short)LOWORD(lParam) + var_1A.left;
-        var_12 = (short)HIWORD(lParam) + var_1A.top;
-        if (word_A79A == var_10 && word_A79C == var_12) {
-            break;
-        }
-        sub_91CD(var_10 - word_A79A, var_12 - word_A79C);
-        word_A79A = var_10;
-        word_A79C = var_12;
-        sub_3284(hWnd);
-        sub_3717(hWnd);
-        break;
-    case WM_RBUTTONUP:
-        if (word_A7A0 != 0) {
-            DestroyWindow(hWnd);
-            break;
-        }
-    case WM_LBUTTONUP:
-        if (word_A79E != 0) {
-            GetWindowRect(hWnd, &var_1A);
-            var_10 = (short)LOWORD(lParam) + var_1A.left;
-            var_12 = (short)HIWORD(lParam) + var_1A.top;
-            sub_91CD(var_10 - word_A79A, var_12 - word_A79C);
-            sub_8FD7(0);
-            if (uMsg == WM_RBUTTONUP) {
-                sub_8FD7(2);
-            }
-            sub_3284(hWnd);
-            sub_3717(hWnd);
-            ReleaseCapture();
-            word_A79E = 0;
-        }
-        break;
-    case WM_RBUTTONDBLCLK:
-        word_A7A0 = 1;
-        break;
-    case WM_LBUTTONDBLCLK:
-    case WM_USER + 2:
-        *(WORD *)var_122 = word_CA3E;
-        var_128 = word_CA42;
-        word_C0B0 = hWnd;
-        if ((HIBYTE(GetKeyState(VK_SHIFT)) & 0x80) != 0 && (HIBYTE(GetKeyState(VK_CONTROL)) & 0x80) != 0) {
-            proc = MakeProcInstance((FARPROC)sub_292A, word_CA58);
-            DialogBox(word_CA58, MAKEINTRESOURCE(108), hWnd, (DLGPROC)proc);
-        } else {
-            proc = MakeProcInstance((FARPROC)sub_27FF, word_CA58);
-            DialogBox(word_CA58, MAKEINTRESOURCE(107), hWnd, (DLGPROC)proc);
-        }
-        FreeProcInstance(proc);
-        sub_3237(hWnd);
-        if (*(WORD *)var_122 != word_CA3E) {
-            if (word_CA3E != 0) {
-                SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-            } else {
-                SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-            }
-        }
-        if (var_128 != word_CA42 && word_CA42 != 0) {
-            sub_8FD7(2);
-        }
-        break;
-    case WM_DESTROY:
-        sub_3D12(hWnd);
-        if (word_CA60[8] != NULL) {
-            sub_2A96();
-        }
-        KillTimer(hWnd, 1U);
-        sub_428E();
-        sub_3119((WORD)0);
-        sub_44ED();
-        DeleteObject(word_CA4A);
-        DragAcceptFiles(hWnd, FALSE);
-        PostQuitMessage(0);
-        break;
-    default:
-        break;
     }
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
@@ -1409,45 +1428,45 @@ LRESULT CALLBACK sub_2699(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     LPWINDOWPOS var_4;
     switch (uMsg) {
-    case WM_CREATE:
-        if (!sub_9200(hWnd)) {
-            DestroyWindow(hWnd);
-            return 1;
-        }
-        SetTimer(hWnd, 1U, 108U, NULL);
-        break;
-    case WM_WINDOWPOSCHANGING:
-        var_4 = (LPWINDOWPOS)lParam;
-        var_4->flags |= SWP_NOCOPYBITS;
-        word_A7B4 = 1;
-        return 0;
-    case WM_WINDOWPOSCHANGED:
-        return 0;
-    case WM_TIMER:
-        word_A7B4 = 0;
-        sub_9438(hWnd);
-        if (!sub_9A49(hWnd)) {
-            word_CA3C = 1;
-            sub_4CE1();
-        }
-        return 0;
-    case WM_PAINT:
-        if (word_A7B4 != 0) {
+        case WM_CREATE:
+            if (!sub_9200(hWnd)) {
+                DestroyWindow(hWnd);
+                return 1;
+            }
+            SetTimer(hWnd, 1U, 108U, NULL);
+            break;
+        case WM_WINDOWPOSCHANGING:
+            var_4 = (LPWINDOWPOS) lParam;
+            var_4->flags |= SWP_NOCOPYBITS;
+            word_A7B4 = 1;
+            return 0;
+        case WM_WINDOWPOSCHANGED:
+            return 0;
+        case WM_TIMER:
             word_A7B4 = 0;
+            fade_out(hWnd);
+            if (!sub_9A49(hWnd)) {
+                word_CA3C = 1;
+                sub_4CE1();
+            }
+            return 0;
+        case WM_PAINT:
+            if (word_A7B4 != 0) {
+                word_A7B4 = 0;
+                ValidateRect(hWnd, NULL);
+                return 0;
+            }
+            sub_93DF(hWnd);
             ValidateRect(hWnd, NULL);
             return 0;
-        }
-        sub_93DF(hWnd);
-        ValidateRect(hWnd, NULL);
-        return 0;
-    case WM_ERASEBKGND:
-        return 0;
-    case WM_DESTROY:
-        sub_930F(0);
-        KillTimer(hWnd, 1U);
-        break;
-    default:
-        break;
+        case WM_ERASEBKGND:
+            return 0;
+        case WM_DESTROY:
+            sub_930F(0);
+            KillTimer(hWnd, 1U);
+            break;
+        default:
+            break;
     }
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
 }
@@ -1456,70 +1475,76 @@ LRESULT CALLBACK sub_2699(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 BOOL CALLBACK sub_27FF(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg) {
-    case WM_INITDIALOG:
-        SendDlgItemMessage(hDlg, 1001, BM_SETCHECK, (WPARAM)word_C0AC, 0);
-        SendDlgItemMessage(hDlg, 1002, BM_SETCHECK, (WPARAM)word_CA5A, 0);
-        SendDlgItemMessage(hDlg, 1003, BM_SETCHECK, (WPARAM)word_C0B6, 0);
-        SendDlgItemMessage(hDlg, 1004, BM_SETCHECK, (WPARAM)word_CA42, 0);
-        return TRUE;
-    case WM_COMMAND:
-        if (wParam == IDRETRY) {
-            WinHelp(hDlg, "Scmpoo16.hlp", HELP_INDEX, 0L);
+        case WM_INITDIALOG:
+            SendDlgItemMessage(hDlg, 1001, BM_SETCHECK, (WPARAM) word_C0AC, 0);
+            SendDlgItemMessage(hDlg, 1002, BM_SETCHECK, (WPARAM) word_CA5A, 0);
+            SendDlgItemMessage(hDlg, 1003, BM_SETCHECK, (WPARAM) word_C0B6, 0);
+            SendDlgItemMessage(hDlg, 1004, BM_SETCHECK, (WPARAM) word_CA42, 0);
             return TRUE;
-        }
-        if (wParam == IDOK) {
-            word_C0AC = IsDlgButtonChecked(hDlg, 1001);
-            word_CA5A = IsDlgButtonChecked(hDlg, 1002);
-            word_C0B6 = IsDlgButtonChecked(hDlg, 1003);
-            word_CA42 = IsDlgButtonChecked(hDlg, 1004);
-            sub_2FF8();
-        }
-        if (wParam == IDABORT) {
-            DestroyWindow(word_C0B0);
-        }
-        if (wParam == IDOK || wParam == IDCANCEL || wParam == IDABORT) {
-            EndDialog(hDlg, (int)wParam);
-        }
-        break;
-    default:
-        break;
+        case WM_COMMAND:
+            if (wParam == IDRETRY) { //unused
+                WinHelp(hDlg, "Scmpoo16.hlp", HELP_INDEX, 0L);
+                return TRUE;
+            }
+            if (wParam == IDOK || wParam == DEBUG) {
+                word_C0AC = IsDlgButtonChecked(hDlg, 1001);
+                word_CA5A = IsDlgButtonChecked(hDlg, 1002);
+                word_C0B6 = IsDlgButtonChecked(hDlg, 1003);
+                word_CA42 = IsDlgButtonChecked(hDlg, 1004);
+                sub_2FF8();
+            }
+            if (wParam == DEBUG) { //secret menu
+                EndDialog(hDlg, (int) wParam);
+                FARPROC proc = MakeProcInstance((FARPROC) debug_window, word_CA58);
+                DialogBox(word_CA58, MAKEINTRESOURCE(108), hDlg, (DLGPROC) proc);
+                FreeProcInstance(proc);
+                return FALSE;
+            }
+            if (wParam == IDABORT) {
+                DestroyWindow(dude);
+            }
+            if (wParam == IDOK || wParam == IDCANCEL || wParam == IDABORT) {
+                EndDialog(hDlg, (int) wParam);
+            }
+            break;
+        default:
+            break;
     }
     return FALSE;
 }
 
 /* Debug window callback. */
-BOOL CALLBACK sub_292A(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
+BOOL CALLBACK debug_window(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
-    case WM_INITDIALOG:
-        CheckRadioButton(hDlg, 1002, 1019, 1002);
-        return TRUE;
-    case WM_COMMAND:
-        if (wParam == IDOK || wParam == IDCANCEL) {
-            EndDialog(hDlg, (int)wParam);
-        }
-        if (wParam >= 1002 && wParam <= 1031 && IsDlgButtonChecked(hDlg, (int)wParam) != 0U) {
-            sub_904A(wParam - 1002);
-        }
-        switch (wParam) {
-        case 1032:
-            sub_91CD(0, -20);
-            break;
-        case 1033:
-            sub_91CD(0, 20);
-            break;
-        case 1034:
-            sub_91CD(-20, 0);
-            break;
-        case 1035:
-            sub_91CD(20, 0);
+        case WM_INITDIALOG:
+            CheckRadioButton(hDlg, 1002, 1019, 1002);
+            return TRUE;
+        case WM_COMMAND:
+            if (wParam == IDOK || wParam == IDCANCEL) {
+                EndDialog(hDlg, (int) wParam);
+            }
+            if (((wParam >= 1002 && wParam <= 1031) || (wParam == 1036 /* roll animation*/ )) && IsDlgButtonChecked(hDlg, (int) wParam) != 0U) {
+                set_state_debug(wParam - 1002); //buttons to states
+            }
+            switch (wParam) {
+                case 1032:
+                    sub_91CD(0, -20);
+                    break;
+                case 1033:
+                    sub_91CD(0, 20);
+                    break;
+                case 1034:
+                    sub_91CD(-20, 0);
+                    break;
+                case 1035:
+                    sub_91CD(20, 0);
+                    break;
+                default:
+                    break;
+            }
             break;
         default:
             break;
-        }
-        break;
-    default:
-        break;
     }
     return FALSE;
 }
@@ -1527,18 +1552,18 @@ BOOL CALLBACK sub_292A(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 /* Create subwindow. */
 void sub_2A21(void)
 {
-    if (word_CA60[8] != NULL) {
+    if (instances[MAX_INSTANCES-1] != NULL) {
         return;
     }
 #ifdef _WIN32
     /* Set the visible window to be owned by the hidden top-level window. */
-    word_CA60[8] = CreateWindowEx(0L, "ScreenMatePooSub", "ScreenMate Sub", WS_POPUP, 0, 0, 0, 0, ownerwindow, NULL, word_CA58, NULL);
+    instances[MAX_INSTANCES-1] = CreateWindowEx(0L, "ScreenMatePooSub", "ScreenMate Sub", WS_POPUP, 0, 0, 0, 0, ownerwindow, NULL, word_CA58, NULL);
 #else
-    word_CA60[8] = CreateWindowEx(0L, "ScreenMatePooSub", "ScreenMate Sub", WS_POPUP, 0, 0, 0, 0, NULL, NULL, word_CA58, NULL);
+    instances[MAX_INSTANCES-1] = CreateWindowEx(0L, "ScreenMatePooSub", "ScreenMate Sub", WS_POPUP, 0, 0, 0, 0, NULL, NULL, word_CA58, NULL);
 #endif
-    if (word_CA60[8] != NULL) {
-        ShowWindow(word_CA60[8], SW_SHOWNA);
-        UpdateWindow(word_CA60[8]);
+    if (instances[MAX_INSTANCES-1] != NULL) {
+        ShowWindow(instances[MAX_INSTANCES-1], SW_SHOWNA);
+        UpdateWindow(instances[MAX_INSTANCES-1]);
     } else {
         word_CA3C = 1;
         sub_4CE1();
@@ -1546,16 +1571,16 @@ void sub_2A21(void)
 }
 
 /* Destroy subwindow. */
-void sub_2A96(void)
+void destroy_subwindow(void)
 {
-    if (word_CA60[8] != NULL) {
-        DestroyWindow(word_CA60[8]);
-        word_CA60[8] = NULL;
+    if (instances[MAX_INSTANCES-1] != NULL) {
+        DestroyWindow(instances[MAX_INSTANCES-1]);
+        instances[MAX_INSTANCES-1] = NULL;
     }
 }
 
 /* Place window to topmost position. */
-void sub_2ABF(HWND arg_0)
+void place_window_as_top(HWND arg_0)
 {
     if (word_CA3E == 0) {
         SetWindowPos(arg_0, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
@@ -1777,12 +1802,12 @@ void sub_31A8(int arg_0, int arg_2, int arg_4)
 {
     word_A7DA = arg_0;
     word_A7DC = arg_2;
-    word_A7BC = stru_A8A2[arg_4].bitmaps[0];
-    word_A7BE = stru_A8A2[arg_4].bitmaps[1];
-    word_A7C0 = stru_A8A2[arg_4].x;
-    word_A7C2 = stru_A8A2[arg_4].y;
-    word_A7DE = stru_A8A2[arg_4].width;
-    word_A7E0 = stru_A8A2[arg_4].height;
+    word_A7BC = sprites[arg_4].bitmaps[0];
+    word_A7BE = sprites[arg_4].bitmaps[1];
+    word_A7C0 = sprites[arg_4].x;
+    word_A7C2 = sprites[arg_4].y;
+    word_A7DE = sprites[arg_4].width;
+    word_A7E0 = sprites[arg_4].height;
 }
 
 /* Clear window. */
@@ -2000,7 +2025,7 @@ BOOL sub_39D6(HWND arg_0)
         return FALSE;
     }
     for (var_2 = 0; var_2 < 8; var_2 += 1) {
-        if (word_CA60[var_2] == arg_0 && word_CA60[var_2] != NULL) {
+        if (instances[var_2] == arg_0 && instances[var_2] != NULL) {
             return TRUE;
         }
     }
@@ -2016,9 +2041,9 @@ int sub_3A36(int arg_0, int arg_2, int arg_4, int arg_6)
     int var_8;
     int var_A;
     for (var_2 = 0; var_2 < 8; var_2 += 1) {
-        if (word_CA60[var_2] != NULL) {
-            var_4 = (short)GetWindowWord(word_CA60[var_2], 0);
-            var_8 = (short)GetWindowWord(word_CA60[var_2], 2);
+        if (instances[var_2] != NULL) {
+            var_4 = (short) GetWindowWord(instances[var_2], 0);
+            var_8 = (short) GetWindowWord(instances[var_2], 2);
             var_6 = var_4 + 40;
             var_A = var_8 + 40;
             if (var_6 == 0) {
@@ -2044,7 +2069,7 @@ void sub_3B4C(HWND arg_0)
     int var_8;
     char var_48[64];
     for (var_6 = 0; var_6 < 8; var_6 += 1) {
-        word_CA60[var_6] = NULL;
+        instances[var_6] = NULL;
     }
     var_2 = GetDesktopWindow();
     var_4 = GW_CHILD;
@@ -2058,7 +2083,7 @@ void sub_3B4C(HWND arg_0)
         if ((GetWindowLong(var_2, GWL_STYLE) & WS_VISIBLE) != 0) {
             GetWindowText(var_2, var_48, 16);
             if (lstrcmp(var_48, "Screen Mate") == 0) {
-                word_CA60[var_8] = var_2;
+                instances[var_8] = var_2;
                 var_8 += 1;
                 if (var_8 > 8) {
                     return;
@@ -2090,9 +2115,9 @@ BOOL sub_3C20(HWND arg_0)
         if ((GetWindowLong(var_2, GWL_STYLE) & WS_VISIBLE) != 0) {
             GetWindowText(var_2, var_48, 16);
             if (lstrcmp(var_48, "Screen Mate") == 0) {
-                word_CA60[var_8] = var_2;
+                instances[var_8] = var_2;
                 var_8 += 1;
-                if (var_8 > 8) {
+                if (var_8 >= MAX_INSTANCES) {
                     return FALSE;
                 }
             }
@@ -2102,7 +2127,7 @@ BOOL sub_3C20(HWND arg_0)
     word_CA40 = var_8;
     word_CA48 = var_8;
     for (var_6 = 0; var_6 < word_CA40; var_6 += 1) {
-        SendMessage(word_CA60[var_6], WM_USER, (WPARAM)1, (LPARAM)arg_0);
+        SendMessage(instances[var_6], WM_USER, (WPARAM) 1, (LPARAM) arg_0);
     }
     return TRUE;
 }
@@ -2112,8 +2137,8 @@ void sub_3D12(HWND arg_0)
 {
     int var_2;
     for (var_2 = 0; var_2 < 8; var_2 += 1) {
-        if (word_CA60[var_2] != NULL) {
-            SendMessage(word_CA60[var_2], WM_USER, (WPARAM)2, (LPARAM)arg_0);
+        if (instances[var_2] != NULL) {
+            SendMessage(instances[var_2], WM_USER, (WPARAM) 2, (LPARAM) arg_0);
         }
     }
 }
@@ -2123,9 +2148,9 @@ void sub_3D5F(HWND arg_0)
 {
     int var_2;
     for (var_2 = 0; var_2 < 8; var_2 += 1) {
-        if (word_CA60[var_2] == NULL) {
+        if (instances[var_2] == NULL) {
             word_CA40 += 1;
-            word_CA60[var_2] = arg_0;
+            instances[var_2] = arg_0;
             break;
         }
     }
@@ -2136,9 +2161,9 @@ void sub_3DA7(HWND arg_0)
 {
     int var_2;
     for (var_2 = 0; var_2 < 8; var_2 += 1) {
-        if (word_CA60[var_2] == arg_0) {
+        if (instances[var_2] == arg_0) {
             word_CA40 -= 1;
-            word_CA60[var_2] = NULL;
+            instances[var_2] = NULL;
             break;
         }
     }
@@ -2155,7 +2180,7 @@ void sub_3DF0(void)
     var_6 = 0;
     while ((var_2 = GetWindow(var_2, var_4)) != NULL && var_6 < 32) {
         var_4 = GW_HWNDNEXT;
-        if (var_2 == word_C0B0) {
+        if (var_2 == dude) {
             continue;
         }
         if ((GetWindowLong(var_2, GWL_STYLE) & WS_VISIBLE) != 0) {
@@ -2282,7 +2307,7 @@ void sub_42AA(LPCSTR lpszSoundName)
 }
 
 /* Play sound by resource ID and additional flags (when option "Cry" enabled). */
-void sub_42C8(int arg_0, UINT arg_2, WORD arg_4)
+void play_sound(int arg_0, UINT arg_2, WORD arg_4)
 {
     if (word_CA5A != 0U) {
         sub_4210(arg_0, arg_2, arg_4);
@@ -2305,18 +2330,18 @@ BOOL sub_42F3(HDC arg_0)
             return FALSE;
         }
         for (var_4 = 0; var_4 < 16; var_4 += 1) {
-            stru_A8A2[var_2 * 16 + var_4].bitmaps[0] = stru_9EE2[var_2].info.bitmaps[0];
-            stru_A8A2[var_2 * 16 + var_4].bitmaps[1] = stru_9EE2[var_2].info.bitmaps[1];
-            stru_A8A2[var_2 * 16 + var_4].width = 40;
-            stru_A8A2[var_2 * 16 + var_4].height = 40;
-            stru_A8A2[var_2 * 16 + var_4].x = var_4 * 40;
-            stru_A8A2[var_2 * 16 + var_4].y = 0;
-            stru_A8A2[var_2 * 16 + var_4 + 256].bitmaps[0] = stru_9FE2[var_2].info.bitmaps[0];
-            stru_A8A2[var_2 * 16 + var_4 + 256].bitmaps[1] = stru_9FE2[var_2].info.bitmaps[1];
-            stru_A8A2[var_2 * 16 + var_4 + 256].width = 40;
-            stru_A8A2[var_2 * 16 + var_4 + 256].height = 40;
-            stru_A8A2[var_2 * 16 + var_4 + 256].x = (15 - var_4) * 40;
-            stru_A8A2[var_2 * 16 + var_4 + 256].y = 0;
+            sprites[var_2 * 16 + var_4].bitmaps[0] = stru_9EE2[var_2].info.bitmaps[0];
+            sprites[var_2 * 16 + var_4].bitmaps[1] = stru_9EE2[var_2].info.bitmaps[1];
+            sprites[var_2 * 16 + var_4].width = 40;
+            sprites[var_2 * 16 + var_4].height = 40;
+            sprites[var_2 * 16 + var_4].x = var_4 * 40;
+            sprites[var_2 * 16 + var_4].y = 0;
+            sprites[var_2 * 16 + var_4 + 256].bitmaps[0] = stru_9FE2[var_2].info.bitmaps[0];
+            sprites[var_2 * 16 + var_4 + 256].bitmaps[1] = stru_9FE2[var_2].info.bitmaps[1];
+            sprites[var_2 * 16 + var_4 + 256].width = 40;
+            sprites[var_2 * 16 + var_4 + 256].height = 40;
+            sprites[var_2 * 16 + var_4 + 256].x = (15 - var_4) * 40;
+            sprites[var_2 * 16 + var_4 + 256].y = 0;
         }
     }
     return TRUE;
@@ -2338,48 +2363,45 @@ void sub_44ED(void)
 }
 
 /* Turn around when approaching screen border or otherwise with 1/20 probability.  */
-void sub_4559(void)
-{
-    if (word_A2AA > 0 && word_A800 < 0) {
-        word_A8A0 = 24;
+void sub_4559(void) {
+    if (facing_direction > 0 && x_curr < 0) {
+        poo_state = 24;
     }
-    if (word_A2AA < 0 && word_CA50 - stru_A8A2[word_A804].width < word_A800) {
-        word_A8A0 = 24;
+    if (facing_direction < 0 && word_CA50 - sprites[sprite_index].width < x_curr) {
+        poo_state = 24;
     }
-    if (word_A2AA > 0 && word_CA50 - stru_A8A2[word_A804].width > word_A800 && rand() % 20 == 0) {
-        word_A8A0 = 24;
+    if (facing_direction > 0 && word_CA50 - sprites[sprite_index].width > x_curr && rand() % 20 == 0) {
+        poo_state = 24;
     }
-    if (word_A2AA < 0 && word_A800 > 0 && rand() % 20 == 0) {
-        word_A8A0 = 24;
+    if (facing_direction < 0 && x_curr > 0 && rand() % 20 == 0) {
+        poo_state = 24;
     }
 }
 
 /* Flag-controlled collision and turn around. */
-void sub_4614(BOOL arg_0)
-{
+void sub_4614(BOOL arg_0) {
     if (word_A7FC == 0) {
-        if (word_A2AA > 0 && word_A800 < 0) {
-            word_A8A0 = 30;
+        if (facing_direction > 0 && x_curr < 0) {
+            poo_state = 30;
         }
-        if (word_A2AA < 0 && word_CA50 - stru_A8A2[word_A804].width < word_A800) {
-            word_A8A0 = 30;
+        if (facing_direction < 0 && word_CA50 - sprites[sprite_index].width < x_curr) {
+            poo_state = 30;
         }
     }
     if (arg_0) {
-        if (word_A2AA > 0 && word_CA50 - 80 > word_A800 && rand() % 20 == 0) {
-            word_A8A0 = 24;
+        if (facing_direction > 0 && word_CA50 - 80 > x_curr && rand() % 20 == 0) {
+            poo_state = 24;
         }
-        if (word_A2AA < 0 && word_A800 > 40 && rand() % 20 == 0) {
-            word_A8A0 = 24;
+        if (facing_direction < 0 && x_curr > 40 && rand() % 20 == 0) {
+            poo_state = 24;
         }
     }
 }
 
 /* Switch to standing sprite after certain frames. */
-void sub_46D2(void)
-{
-    if (word_A826-- <= 0) {
-        word_A8A0 = 42;
+void sub_46D2(void) {
+    if (animation_frame-- <= 0) {
+        poo_state = 42;
     }
 }
 
@@ -2398,9 +2420,9 @@ void sub_46F7(void)
             if (word_A832 != 0) {
                 sub_4210(108, 0U, 0);
             } else if (word_CA76 != 0) {
-                word_A8A0 = 113;
+                poo_state = 113;
             } else {
-                word_A8A0 = 1;
+                poo_state = 1;
             }
         }
     } else {
@@ -2415,23 +2437,22 @@ void sub_46F7(void)
             var_C = 12;
         }
         if (var_2->tm_min == 0 && var_C != word_A830) {
-            sub_2A96();
+            destroy_subwindow();
             dword_A834 = 0;
             word_A830 = var_C;
             word_A832 = word_A830 + 1;
-            word_A8A0 = 81;
+            poo_state = 81;
         }
     }
 }
 
 /* Update window position and sprite to be painted. */
-void sub_4807(int arg_0, int arg_2, int arg_4)
-{
-    SetWindowWord(word_C0B0, 0, (short)word_A800);
-    SetWindowWord(word_C0B0, 2, (short)word_A802);
+void update_sprite(int arg_0, int arg_2, int arg_4) {
+    SetWindowWord(dude, 0, (short) x_curr);
+    SetWindowWord(dude, 2, (short) y_curr);
     if (arg_4 >= 9 && arg_4 <= 14) {
         sub_31A8(arg_0, arg_2, arg_4);
-    } else if (word_A2AA > 0) {
+    } else if (facing_direction > 0) {
         sub_31A8(arg_0, arg_2, arg_4);
     } else {
         sub_31A8(arg_0, arg_2, arg_4 + 256);
@@ -2439,11 +2460,10 @@ void sub_4807(int arg_0, int arg_2, int arg_4)
 }
 
 /* Update window position and sprite to be painted (sub). */
-void sub_488C(int arg_0, int arg_2, int arg_4)
-{
+void update_sprite_sub(int arg_0, int arg_2, int arg_4) {
     if (arg_4 >= 9 && arg_4 <= 14) {
         sub_9350(arg_0, arg_2, arg_4);
-    } else if (word_A2AC > 0) {
+    } else if (facing_direction_sub > 0) {
         sub_9350(arg_0, arg_2, arg_4);
     } else {
         sub_9350(arg_0, arg_2, arg_4 + 256);
@@ -2451,8 +2471,7 @@ void sub_488C(int arg_0, int arg_2, int arg_4)
 }
 
 /* Return TRUE if the window handle is NULL or if the handle contains an existing window. */
-BOOL sub_48F3(HWND arg_0)
-{
+BOOL sub_48F3(HWND arg_0) {
     if (arg_0 == NULL) {
         return TRUE;
     } else {
@@ -2474,8 +2493,7 @@ void sub_491D(HWND arg_0, LPRECT arg_2)
 }
 
 /* Process when out of screen view or at different positions on top of visible window. */
-void sub_496F(int arg_0)
-{
+void sub_496F(int arg_0) {
     RECT var_8;
     if (word_A7FC == 0) {
         return;
@@ -2483,104 +2501,102 @@ void sub_496F(int arg_0)
     if (word_A81C != NULL) {
         if (!sub_48F3(word_A81C)) {
             if (arg_0 == 2) {
-                word_A8A0 = 94;
+                poo_state = 94;
             } else {
-                word_A8A0 = 102;
+                poo_state = 102;
             }
             return;
         }
         sub_491D(word_A81C, &var_8);
-        if (var_8.top > stru_A81E.top || word_A800 + 40 < var_8.left || var_8.right < word_A800) {
+        if (var_8.top > stru_A81E.top || x_curr + 40 < var_8.left || var_8.right < x_curr) {
             if (arg_0 == 2) {
-                word_A8A0 = 94;
+                poo_state = 94;
             } else {
-                word_A8A0 = 102;
+                poo_state = 102;
             }
             return;
         }
         if (var_8.top < stru_A81E.top) {
-            word_A802 = var_8.top - stru_A8A2[word_A804].height;
+            y_curr = var_8.top - sprites[sprite_index].height;
             stru_A81E.top = var_8.top;
             stru_A81E.bottom = var_8.bottom;
             stru_A81E.left = var_8.left;
             stru_A81E.right = var_8.right;
-            sub_4807(word_A800, word_A802, word_A804);
+            update_sprite(x_curr, y_curr, sprite_index);
             return;
         }
         if (arg_0 == 1) {
-            if (word_A800 + 8 < var_8.left && word_A2AA > 0) {
-                word_A8A0 = 105;
-                word_A800 = var_8.left - 10;
+            if (x_curr + 8 < var_8.left && facing_direction > 0) {
+                poo_state = 105;
+                x_curr = var_8.left - 10;
                 return;
             }
-            if (word_A800 + 32 >= var_8.right && word_A2AA < 0) {
-                word_A8A0 = 105;
-                word_A800 = var_8.right - 30;
+            if (x_curr + 32 >= var_8.right && facing_direction < 0) {
+                poo_state = 105;
+                x_curr = var_8.right - 30;
                 return;
             }
-            if (rand() % 20 - 1 == 0 && word_CA52 - word_A802 > 100) {
-                word_A8A0 = 104;
+            if (rand() % 20 - 1 == 0 && word_CA52 - y_curr > 100) {
+                poo_state = 104;
                 return;
             }
         }
         if (arg_0 == 2) {
-            if (word_A800 + 32 < var_8.left || word_A800 + 8 > var_8.right) {
-                word_A8A0 = 94;
+            if (x_curr + 32 < var_8.left || x_curr + 8 > var_8.right) {
+                poo_state = 94;
                 return;
             }
         }
     }
-    if (stru_A8A2[word_A804].width + word_A800 < 0 || word_A800 > word_CA50) {
-        word_A8A0 = 0;
+    if (sprites[sprite_index].width + x_curr < 0 || x_curr > word_CA50) {
+        poo_state = 0;
         return;
     }
 }
 
 /* Process when climbing up side of a window. */
-void sub_4B3B(void)
-{
+void sub_4B3B(void) {
     RECT var_8;
     if (word_A7FC == 0) {
         return;
     }
     if (word_A81C != NULL) {
         if (!sub_48F3(word_A81C)) {
-            word_A8A0 = 102;
+            poo_state = 102;
             return;
         }
         sub_491D(word_A81C, &var_8);
-        if (var_8.right < stru_A81E.right && word_A2AA > 0 || var_8.left > stru_A81E.left && word_A2AA < 0) {
-            word_A8A0 = 102;
+        if (var_8.right < stru_A81E.right && facing_direction > 0 || var_8.left > stru_A81E.left && facing_direction < 0) {
+            poo_state = 102;
             return;
         }
-        if (var_8.right > stru_A81E.right && word_A2AA > 0 || var_8.left < stru_A81E.left && word_A2AA < 0) {
-            if (word_A2AA > 0) {
-                word_A800 = var_8.right + 10;
+        if (var_8.right > stru_A81E.right && facing_direction > 0 || var_8.left < stru_A81E.left && facing_direction < 0) {
+            if (facing_direction > 0) {
+                x_curr = var_8.right + 10;
             } else {
-                word_A800 = var_8.left - 50;
+                x_curr = var_8.left - 50;
             }
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A8A0 = 102;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 102;
             return;
         }
     }
 }
 
 /* Detect collision with other instances, action controlled by a flag. */
-void sub_4C21(int arg_0, int arg_2, int arg_4)
-{
+void sub_4C21(int arg_0, int arg_2, int arg_4) {
     if (arg_2 < arg_0) {
         arg_0 += 40;
         arg_2 = arg_0 - 80;
     } else {
         arg_2 = arg_0 + 80;
     }
-    if (sub_3A36(arg_0, arg_2, word_A802, word_A802 + 40) != 0) {
+    if (sub_3A36(arg_0, arg_2, y_curr, y_curr + 40) != 0) {
         if (arg_4 == 1) {
-            word_A8A0 = 24;
+            poo_state = 24;
         }
         if (arg_4 == 2) {
-            word_A8A0 = 30;
+            poo_state = 30;
         }
     }
 }
@@ -2594,13 +2610,13 @@ int sub_4C91(int arg_0, int arg_2)
     } else {
         arg_2 = arg_0 + 80;
     }
-    return sub_3A36(arg_0, arg_2, word_A802, word_A802 + 40);
+    return sub_3A36(arg_0, arg_2, y_curr, y_curr + 40);
 }
 
 /* Reinitialize state. */
 void sub_4CE1(void)
 {
-    word_A8A0 = 0;
+    poo_state = 0;
 }
 
 /* Process state change on each timer expiration. */
@@ -2613,2393 +2629,2379 @@ void sub_4CF8(void)
     RECT var_10;
     POINT var_14;
     if (word_A84A++ > 100) {
-        sub_3B4C(word_C0B0);
+        sub_3B4C(dude);
         word_A84A = 0;
     }
     if (word_C0AC != 0) {
         sub_46F7();
     }
 loc_4D33:
-    switch (word_A8A0) {
-    case 0:
-        word_A7FC = 0;
-        srand((unsigned int)GetTickCount());
-        word_A800 = -80;
-        word_A802 = -80;
-        word_A8A0 = 1;
-    case 1:
-        word_A844 = 0;
-        if (word_CA42 != 0U) {
-            word_A8A0 = 2;
-            goto loc_4D33;
-        }
-        word_CA72 = 0;
-        sub_2A96();
-        if (word_CA54 != 0) {
-            word_A8A0 = word_CA54;
-            word_CA54 = 0;
-            break;
-        }
-        if (rand() % 20 == 5 && word_A7FC == 0) {
-            word_A8A0 = 85;
-            break;
-        }
-        if (rand() % 40 == 5 && word_A7FC == 0 && word_CA3C == 0) {
-            word_A8A0 = 4;
-            break;
-        }
-        word_A8A0 = word_A15A[rand() % 80];
-        if (word_A800 > word_CA50 || word_A800 < -40 || word_A802 < -40 || word_A802 > word_CA52) {
-            if ((rand() & 1) == 0) {
-                word_A2AA = 1;
-                word_A800 = word_CA50 + word_CA4C;
-                word_A802 = rand() % (word_CA52 - 64) + word_CA4E;
-            } else {
-                word_A2AA = -1;
-                word_A800 = -40;
-                word_A802 = rand() % (word_CA52 - 64) + word_CA4E;
+    switch (poo_state) {
+        case 0:
+            word_A7FC = 0;
+            srand((unsigned int) GetTickCount());
+            x_curr = -80;
+            y_curr = -80;
+            poo_state = 1;
+        case 1:
+            word_A844 = 0;
+            if (word_CA42 != 0U) {
+                poo_state = 2;
+                goto loc_4D33;
             }
-            word_A8A0 = 11;
-        }
-        break;
-    case 2:
-        word_A7FC = 1;
-        word_CA72 = 0;
-        sub_2A96();
-        if (word_CA54 != 0) {
-            word_A8A0 = word_CA54;
-            word_CA54 = 0;
-            break;
-        }
-        word_A8A0 = word_A1FA[rand() % 80];
-        if (word_A800 > word_CA50 || word_A800 < -40 || word_A802 < -40 || word_A802 > word_CA52) {
-            if (rand() % 10 == 0 && word_CA3C == 0) {
-                word_A8A0 = 6;
+            word_CA72 = 0;
+            destroy_subwindow();
+            if (word_CA54 != 0) {
+                poo_state = word_CA54;
+                word_CA54 = 0;
                 break;
             }
-            word_A81C = GetActiveWindow();
-            if (word_A81C == word_C0B0 || word_A81C == word_CA60[8] || word_A81C == NULL || sub_39D6(word_A81C)) {
-                word_A8A0 = 3;
+            if (rand() % 20 == 5 && word_A7FC == 0) {
+                poo_state = 85;
+                break;
+            }
+            if (rand() % 40 == 5 && word_A7FC == 0 && word_CA3C == 0) {
+                poo_state = 4;
+                break;
+            }
+            poo_state = word_A15A[rand() % 80];
+            if (x_curr > word_CA50 || x_curr < -40 || y_curr < -40 || y_curr > word_CA52) {
+                if ((rand() & 1) == 0) {
+                    facing_direction = 1;
+                    x_curr = word_CA50 + word_CA4C;
+                    y_curr = rand() % (word_CA52 - 64) + word_CA4E;
+                } else {
+                    facing_direction = -1;
+                    x_curr = -40;
+                    y_curr = rand() % (word_CA52 - 64) + word_CA4E;
+                }
+                poo_state = 11;
+            }
+            break;
+        case 2:
+            word_A7FC = 1;
+            word_CA72 = 0;
+            destroy_subwindow();
+            if (word_CA54 != 0) {
+                poo_state = word_CA54;
+                word_CA54 = 0;
+                break;
+            }
+            poo_state = word_A1FA[rand() % 80];
+            if (x_curr > word_CA50 || x_curr < -40 || y_curr < -40 || y_curr > word_CA52) {
+                if (rand() % 10 == 0 && word_CA3C == 0) {
+                    poo_state = 6;
+                    break;
+                }
+                word_A81C = GetActiveWindow();
+                if (word_A81C == dude || word_A81C == instances[MAX_INSTANCES-1] || word_A81C == NULL || sub_39D6(word_A81C)) {
+                    poo_state = 3;
+                    goto loc_4D33;
+                }
+                sub_491D(word_A81C, &stru_A81E);
+                if (stru_A81E.top < 10) {
+                    poo_state = 3;
+                    goto loc_4D33;
+                }
+                x_curr = (rand() % stru_A81E.right - stru_A81E.left) / 3 + (stru_A81E.right - stru_A81E.left) / 2 +
+                         stru_A81E.left - 20;
+                y_curr = -40;
+                word_A840 = 0;
+                y_speed = 0;
+                word_A808 = 0;
+                word_A842 = rand() % 2;
+                poo_state = 92;
+                if (rand() % 3 == 0) {
+                    poo_state = 3;
+                    goto loc_4D33;
+                }
+            }
+            break;
+        case 3:
+            word_A7FC = 1;
+            x_curr = rand() % (word_CA50 - 40);
+            y_curr = -(rand() % 20 - (-40));
+            word_A840 = 0;
+            y_speed = 0;
+            word_A808 = 0;
+            word_A842 = rand() % 2;
+            if (rand() % 3 == 0) {
+                place_window_as_top(dude);
+            }
+            poo_state = 97;
+            break;
+        case 153:
+            break;
+        case 154:
+            break;
+        case 4:
+            if (word_CA50 / 2 - 20 > x_curr) {
+                facing_direction = 1;
+            } else {
+                facing_direction = -1;
+            }
+            sprite_index = 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 5;
+            break;
+        case 5:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_curr < -40 || x_curr > word_CA50) {
+                poo_state = 6;
+            }
+            break;
+        case 6:
+            poo_state = word_A29A[rand() % 8];
+            break;
+        case 7:
+            word_A7FE = 0;
+            if ((rand() & 1) == 0) {
+                word_A7FE = 1;
+            }
+            if (word_A7FE != 0) {
+                sub_3DF0();
+            }
+            sprite_index = 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame = rand() % 10 + 10;
+            poo_state = 8;
+            break;
+        case 8:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A7FE != 0) {
+                if (facing_direction > 0) {
+                    var_2 = sub_3E7C(&var_6, y_curr, y_curr + 40, -(facing_direction * 16 - x_curr), x_curr);
+                } else {
+                    var_2 = sub_3E7C(&var_6, y_curr, y_curr + 40, -(facing_direction * 16 - x_curr) + 40, x_curr + 40);
+                }
+                if (var_2 != 0) {
+                    if (facing_direction > 0) {
+                        x_curr = var_2;
+                    } else {
+                        x_curr = var_2 - 40;
+                    }
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    poo_state = 30;
+                    break;
+                }
+            }
+            if (word_A82C == 0) {
+                x_curr -= facing_direction * 16;
+            }
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (rand() % 50 == 0 && word_A7FC != 0) {
+                poo_state = 9;
+            }
+            sub_4614(TRUE);
+            sub_46D2();
+            sub_496F(2);
+            sub_4C21(-(facing_direction * 16 - x_curr), facing_direction * 16 + x_curr, 2);
+            break;
+        case 9:
+            y_speed = -11;
+            word_A808 = -(facing_direction * 8);
+            word_A80C = y_curr;
+            poo_state = 10;
+        case 10:
+            x_curr += word_A808;
+            y_curr += y_speed;
+            y_speed += 2;
+            if (y_speed >= -1 && y_speed <= 1) {
+                sprite_index = 23;
+            } else if (y_speed < -1) {
+                sprite_index = 30;
+            } else {
+                sprite_index = 24;
+            }
+            if (word_A80C <= y_curr) {
+                y_curr = word_A80C;
+                poo_state = 7;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_4614(FALSE);
+            sub_4C21(word_A808 + x_curr, x_curr - word_A808, 2);
+            if (poo_state == 30 && word_A80C != y_curr) {
+                word_A844 = y_curr - word_A80C;
+            }
+            break;
+        case 11:
+            word_A7FE = 0;
+            if ((word_A7FC & !(rand() & 1)) != 0) {
+                word_A7FE = 1;
+            }
+            if (word_A7FE != 0) {
+                sub_3DF0();
+            }
+            animation_frame = rand() % 10 + 10;
+            sprite_index = 2;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 12;
+            break;
+        case 12:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A7FE != 0) {
+                if (facing_direction > 0) {
+                    var_2 = sub_3E7C(&var_6, y_curr, y_curr + 40, -(facing_direction * 6 - x_curr), x_curr);
+                } else {
+                    var_2 = sub_3E7C(&var_6, y_curr, y_curr + 40, -(facing_direction * 6 - x_curr) + 40, x_curr + 40);
+                }
+                if (var_2 != 0) {
+                    if (facing_direction > 0) {
+                        x_curr = var_2;
+                    } else {
+                        x_curr = var_2 - 40;
+                    }
+                    word_A81C = var_6;
+                    sub_491D(word_A81C, &stru_A81E);
+                    word_A83E = stru_A81E.top - 12;
+                    word_A7FC = 1;
+                    word_A83C = x_curr;
+                    sprite_index = 30;
+                    sub_2B01(dude, word_A81C);
+                    poo_state = 89;
+                    break;
+                }
+            }
+            if (word_A82C == 0) {
+                x_curr -= facing_direction * 6;
+            }
+            sprite_index = sprite_index == 2 ? 3 : 2;
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_4559();
+            sub_46D2();
+            sub_496F(1);
+            sub_4C21(-(facing_direction * 6 - x_curr), facing_direction * 6 + x_curr, 1);
+            break;
+        case 13:
+            word_A82A = rand() % 2;
+            animation_frame = (rand() % 32) + 32;
+            if (word_A82A != 0) {
+                sprite_index = 88;
+            } else {
+                sprite_index = 86;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 14;
+            break;
+        case 14:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A82C == 0) {
+                x_curr -= facing_direction * 6;
+            }
+            if (word_A82A != 0) {
+                sprite_index = sprite_index == 88 ? 89 : 88;
+            } else {
+                sprite_index = sprite_index == 86 ? 87 : 86;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_4559();
+            sub_46D2();
+            sub_496F(1);
+            break;
+        case 15:
+            word_A82A = rand() % 2;
+            animation_frame = rand() % 3 + 3;
+            if (word_A82A != 0) {
+                sprite_index = 54;
+            } else {
+                sprite_index = 52;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 16;
+            break;
+        case 16:
+            if (frame_period_counter++ < 3) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A82A != 0) {
+                sprite_index = sprite_index == 54 ? 55 : 54;
+            } else {
+                sprite_index = sprite_index == 52 ? 53 : 52;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_4559();
+            sub_46D2();
+            sub_496F(0);
+            break;
+        case 17:
+            sprite_index = 6;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 18;
+            break;
+        case 18:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index += 1;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (sprite_index == 8) {
+                sprite_index = 0;
+                poo_state = 19;
+                animation_frame = rand() % 8 + 8;
+            }
+            sub_496F(0);
+            break;
+        case 19:
+            if (frame_period_counter++ < 4) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = sprite_index == 0 ? 1 : 0;
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_46D2();
+            sub_496F(0);
+            break;
+        case 20:
+            word_A82A = rand() % 3;
+            if (word_A82A == 0) {
+                sprite_index = 6;
+            } else if (word_A82A == 1) {
+                sprite_index = 31;
+            } else {
+                sprite_index = 73;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 21;
+            frame_period_counter = rand() % 15 + rand() % 15;
+            sub_496F(0);
+            break;
+        case 21:
+            sub_496F(0);
+            if (frame_period_counter-- > 0) {
+                break;
+            }
+            poo_state = 22;
+            animation_frame = 0;
+            break;
+        case 22:
+            sprite_index = word_A2B4[word_A82A][animation_frame];
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 7) {
+                poo_state = 23;
+                frame_period_counter = rand() % 15 + rand() % 15;
+            }
+            sub_496F(0);
+            break;
+        case 23:
+            sub_496F(0);
+            if (frame_period_counter-- > 0) {
+                break;
+            }
+            poo_state = 1;
+            break;
+        case 24:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if ((rand() & 1) != 0) {
+                word_A82A = 0;
+            } else {
+                word_A82A = 1;
+            }
+            poo_state = 25;
+            animation_frame = 0;
+            break;
+        case 25:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A82A != 0) {
+                if (facing_direction > 0) {
+                    sprite_index = animation_frame + 9;
+                } else {
+                    sprite_index = 11 - animation_frame;
+                }
+            } else {
+                if (facing_direction > 0) {
+                    sprite_index = animation_frame + 12;
+                } else {
+                    sprite_index = 14 - animation_frame;
+                }
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 2) {
+                facing_direction = -facing_direction;
+                poo_state = 26;
+            }
+            sub_496F(0);
+            break;
+        case 26:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 1;
+            sub_496F(0);
+            break;
+        case 27:
+            y_speed = -10;
+            word_A808 = facing_direction * 8;
+            word_A80C = y_curr;
+            word_A848 = 0;
+            poo_state = 28;
+        case 28:
+            x_curr += word_A808;
+            y_curr += y_speed;
+            y_speed += 2;
+            sprite_index = word_A324[word_A848];
+            word_A848 += 1;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (sprite_index == 64) {
+                word_A842 = 3;
+                poo_state = 99;
+                break;
+            }
+            break;
+        case 29:
+            frame_period_counter = 0;
+            animation_frame = 0;
+            word_A82A = 0;
+            if ((rand() & 7) == 0) {
+                word_A82A = 1;
+            }
+            if (rand() % 5 == 0) {
+                word_A82A = 2;
+            }
+            poo_state = 32;
+            if (word_A82A != 0) {
+                poo_state = 34;
+            }
+            goto loc_4D33;
+        case 30:
+            if (word_A7FC != 0) {
+                poo_state = 27;
                 goto loc_4D33;
+            } else {
+                poo_state = 24;
+                goto loc_4D33;
+            }
+            frame_period_counter = 0;
+            animation_frame = 0;
+            word_A82A = 0;
+            if ((rand() & 7) == 0) {
+                word_A82A = 1;
+            }
+            if (rand() % 5 == 0) {
+                word_A82A = 2;
+            }
+            poo_state = 31;
+        case 31:
+            sub_4C21(facing_direction * 10 + x_curr, x_curr, 2);
+            if (poo_state == 30) {
+                if (animation_frame != 0) {
+                    word_A844 -= word_A324[animation_frame + 9];
+                }
+                break;
+            }
+            sprite_index = word_A324[animation_frame];
+            update_sprite(x_curr, y_curr - word_A324[animation_frame + 10], sprite_index);
+            animation_frame += 1;
+            if (word_A82A != 0 && sprite_index == 66) {
+                if (word_A844 != 0) {
+                    y_curr -= word_A844;
+                    x_curr += facing_direction * 10;
+                    update_sprite(x_curr, y_curr, sprite_index);
+                }
+                word_A846 = 3;
+                poo_state = 34;
+                break;
+            }
+            if (animation_frame > 8) {
+                poo_state = 32;
+                break;
+            }
+            x_curr += facing_direction * 10;
+            break;
+        case 32:
+            sub_496F(0);
+            if (frame_period_counter++ < 8) {
+                break;
+            }
+            frame_period_counter = 0;
+            facing_direction = -facing_direction;
+            sprite_index = 48;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 33;
+            break;
+        case 33:
+            sub_496F(0);
+            if (frame_period_counter++ < 15) {
+                break;
+            }
+            frame_period_counter = 0;
+            poo_state = 1;
+            break;
+        case 34:
+            x_curr += facing_direction * 8;
+            if (sprite_index >= 70 || sprite_index <= 62) {
+                sprite_index = 63;
+            } else {
+                sprite_index += 1; // roll
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (word_A82A == 2 && sprite_index == 70) {
+                poo_state = 69;
+                break;
+            }
+            if (x_curr > word_CA50 || x_curr < -40) {
+                poo_state = 1;
+            }
+            sub_4C21(facing_direction * 8 + x_curr, -(facing_direction * 8 - x_curr), 2);
+            if (poo_state == 30) {
+                if (word_A846-- > 0) {
+                    facing_direction = -facing_direction;
+                    poo_state = 34;
+                } else {
+                    poo_state = 34;
+                }
+            }
+            sub_496F(1);
+            break;
+        case 35: // pick nose
+            animation_frame = 0;
+            poo_state = 37;
+        case 36:
+            break;
+        case 37:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = animation_nose_pick[animation_frame++];
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 38:
+        case 39:
+            poo_state = 1;
+            break;
+        case 40:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (--sprite_index < 103) {
+                animation_frame = 0;
+                poo_state = 41;
+                break;
+            }
+            sub_496F(0);
+            break;
+        case 41:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (facing_direction > 0) {
+                sprite_index = 13 - animation_frame;
+            } else {
+                sprite_index = animation_frame + 13;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 1) {
+                poo_state = 42;
+            }
+            sub_496F(0);
+            break;
+        case 42:
+            sub_496F(0);
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 1;
+            animation_frame = 0;
+            break;
+        case 43:
+            //play_sound(109, 0U, 0);
+            animation_frame = 0;
+            frame_period_counter = 0;
+            poo_state = 44;
+        case 44:
+            sprite_index = animation_snap[animation_frame++];
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            if(animation_frame == 12)
+                play_sound(112, 0U, 0);
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 45:
+            play_sound(108, 0U, 0);
+            animation_frame = 0;
+            poo_state = 46;
+        case 46:
+            if (frame_period_counter++ < 0) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = animation_burp[animation_frame];
+            animation_frame += 1;
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 47:
+            animation_frame = 0;
+            poo_state = 48;
+        case 48:
+            if (frame_period_counter++ < 5) {
+                break;
+            }
+            frame_period_counter = 0;
+            if(animation_frame == 2) {
+                play_sound(110, 0U, 0);
+            }
+            sprite_index = animation_thicc[animation_frame++ == 4 ? 1 : 0];
+
+            if (animation_frame == 9) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 49:
+            animation_frame = 0;
+            poo_state = 50;
+        case 50:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = word_A38C[animation_frame];
+            animation_frame += 1;
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 51:
+            animation_frame = 0;
+            poo_state = 52;
+        case 52:
+            if (frame_period_counter++ < 0) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = sprite_index == 56 ? 57 : 56;
+            if (animation_frame++ > 30) {
+                sprite_index = 3;
+                poo_state = 1;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 53:
+            animation_frame = 0;
+            poo_state = 54;
+            sub_2A21();
+            facing_direction_sub = facing_direction;
+            y_sub = y_curr;
+            sprite_index_sub = 149;
+            if (facing_direction > 0) {
+                x_sub = x_curr - 40;
+            } else {
+                x_sub = x_curr + 40;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            word_C0AE = 1;
+            sub_2B01(instances[MAX_INSTANCES-1], dude);
+            break;
+        case 54:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = animation_beer[animation_frame];
+            animation_frame += 1;
+            if (sprite_index == 2) {
+                x_curr -= facing_direction * 8;
+                update_sprite(x_curr, y_curr, sprite_index);
+                break;
+            }
+            if (sprite_index >= 149 && sprite_index <= 153) {
+                sprite_index_sub = sprite_index;
+                if (sprite_index == 153) {
+                    sprite_index_sub = 173;
+                }
+                update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+                sprite_index = animation_beer[animation_frame];
+                animation_frame += 1;
+            }
+            if (sprite_index == 0) {
+                destroy_subwindow();
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            break;
+        case 55:
+            break;
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 6;
+            sprite_index = 2;
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_4559();
+            sub_46D2();
+            sub_496F(1);
+            sub_4C21(-(facing_direction * 6 - x_curr), facing_direction * 6 + x_curr, 1);
+            poo_state = 54;
+            break;
+        case 56:
+            animation_frame = 0;
+            poo_state = 57;
+        case 57:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = animation_beer[animation_frame];
+            animation_frame += 1;
+            if (sprite_index >= 149 && sprite_index <= 153) {
+                sprite_index = animation_beer[animation_frame];
+                animation_frame += 1;
+            }
+            if (animation_frame >= 16) {
+                poo_state = 42;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 58:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 59;
+            animation_frame = 0;
+            break;
+        case 59:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (facing_direction > 0) {
+                sprite_index = animation_frame + 9;
+            } else {
+                sprite_index = 11 - animation_frame;
+            }
+            animation_frame += 1;
+            if (animation_frame > 2) {
+                sprite_index = 34;
+                frame_period_counter = -10;
+                poo_state = 60;
+                animation_frame = 0;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 60:
+            if (frame_period_counter++ < 0) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = word_A2B4[5][animation_frame];
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 7) {
+                animation_frame = 0;
+                poo_state = 61;
+                frame_period_counter = -5;
+            }
+            sub_496F(0);
+            break;
+        case 61:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (facing_direction > 0) {
+                sprite_index = 10 - animation_frame;
+            } else {
+                sprite_index = animation_frame + 10;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 1) {
+                poo_state = 42;
+            }
+            sub_496F(0);
+            break;
+        case 64:
+            break;
+        case 65:
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame = 0;
+            poo_state = 66;
+            break;
+        case 66:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (animation_frame == 0) {
+                if (facing_direction > 0) {
+                    sprite_index = 9;
+                } else {
+                    sprite_index = 11;
+                }
+            } else {
+                sprite_index = 10;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame++ > 0) {
+                poo_state = 67;
+                word_A828 = (rand() % 4 + 4) * 8 + 64;
+                animation_frame = 0;
+                break;
+            }
+            sub_496F(0);
+            break;
+        case 67:
+            if (--animation_frame < 0) {
+                animation_frame = 79;
+            }
+            x_curr -= facing_direction * 8;
+            sprite_index = word_A524[animation_frame % 8];
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (facing_direction > 0 && x_curr < 0) {
+                poo_state = 30;
+            }
+            if (facing_direction < 0 && word_CA50 - sprites[sprite_index].width < x_curr) {
+                poo_state = 30;
+            }
+            if (--word_A828 <= 0) {
+                poo_state = 68;
+                animation_frame = 0;
+            }
+            sub_496F(2);
+            sub_4C21(-(facing_direction * 8 - x_curr), facing_direction * 8 + x_curr, 2);
+            break;
+        case 68:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (animation_frame == 1) {
+                if (facing_direction > 0) {
+                    sprite_index = 9;
+                } else {
+                    sprite_index = 11;
+                }
+            } else if (animation_frame == 0) {
+                sprite_index = 10;
+            } else {
+                sprite_index = 3;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame++ > 1) {
+                poo_state = 1;
+                break;
+            }
+            sub_496F(0);
+            break;
+        case 62:
+            poo_state = 63;
+            animation_frame = 0;
+            break;
+        case 63:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = animation_blush[animation_frame];
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            sub_496F(0);
+            break;
+        case 75:
+            animation_frame = rand() % 8 + 8;
+            word_A828 = animation_frame;
+            sprite_index = facing_direction > 0 ? 12 : 14;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 76;
+            break;
+        case 76:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 13;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 77;
+            break;
+        case 77:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = sprite_index == 131 ? 132 : 131;
+            y_curr -= 8;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame-- <= 0) {
+                animation_frame = word_A828;
+                poo_state = 78;
+            }
+            break;
+        case 78:
+            sprite_index = 133;
+            y_curr += 8;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame-- <= 0) {
+                poo_state = 79;
+            }
+            break;
+        case 79:
+            if (frame_period_counter++ < 10) {
+                break;
+            }
+            frame_period_counter = 0;
+            poo_state = 80;
+            animation_frame = 3;
+            break;
+        case 80:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (facing_direction > 0) {
+                sprite_index = word_A43C[animation_frame];
+                animation_frame += 1;
+            } else {
+                sprite_index = word_A44C[animation_frame];
+                animation_frame += 1;
+            }
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            break;
+        case 69:
+            frame_period_counter = 0;
+            animation_frame = 0;
+            poo_state = 70;
+        case 70:
+            if (facing_direction > 0) {
+                sprite_index = word_A536[animation_frame % 8];
+            } else {
+                sprite_index = word_A536[(animation_frame + 4) % 8];
+            }
+            if (sprite_index == 2) {
+                sprite_index = 3;
+                if (facing_direction > 0) {
+                    facing_direction = -facing_direction;
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    facing_direction = -facing_direction;
+                } else {
+                    update_sprite(x_curr, y_curr, sprite_index);
+                }
+            } else if (sprite_index == 3) {
+                if (facing_direction < 0) {
+                    facing_direction = -facing_direction;
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    facing_direction = -facing_direction;
+                } else {
+                    update_sprite(x_curr, y_curr, sprite_index);
+                }
+            } else {
+                update_sprite(x_curr, y_curr, sprite_index);
+            }
+            if (animation_frame++ >= 16) {
+                sprite_index = 67;
+                update_sprite(x_curr, y_curr, sprite_index);
+                poo_state = 71;
+            }
+            sub_496F(0);
+            break;
+        case 71:
+            sub_496F(0);
+            if (frame_period_counter++ < 14) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 96;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 72;
+            break;
+        case 72:
+            sub_496F(0);
+            if (frame_period_counter++ < 30) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 1;
+            break;
+        case 73:
+            animation_frame = 0;
+            poo_state = 74;
+        case 74:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = word_A422[animation_frame];
+            animation_frame += 1;
+            if (sprite_index == 0) {
+                poo_state = 1;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_496F(0);
+            break;
+        case 81:
+            sprite_index = 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 82;
+            break;
+        case 82:
+            frame_period_counter = 0;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            break;
+        case 83:
+            break;
+        case 84:
+            poo_state = 0;
+            break;
+        case 85:
+            word_A81C = GetActiveWindow();
+            if (word_A81C == dude || word_A81C == instances[MAX_INSTANCES-1] || word_A81C == NULL || sub_39D6(word_A81C)) {
+                poo_state = 1;
+                break;
             }
             sub_491D(word_A81C, &stru_A81E);
             if (stru_A81E.top < 10) {
-                word_A8A0 = 3;
-                goto loc_4D33;
-            }
-            word_A800 = (rand() % stru_A81E.right - stru_A81E.left) / 3 + (stru_A81E.right - stru_A81E.left) / 2 + stru_A81E.left - 20;
-            word_A802 = -40;
-            word_A840 = 0;
-            word_A806 = 0;
-            word_A808 = 0;
-            word_A842 = rand() % 2;
-            word_A8A0 = 92;
-            if (rand() % 3 == 0) {
-                word_A8A0 = 3;
-                goto loc_4D33;
-            }
-        }
-        break;
-    case 3:
-        word_A7FC = 1;
-        word_A800 = rand() % (word_CA50 - 40);
-        word_A802 = -(rand() % 20 - (-40));
-        word_A840 = 0;
-        word_A806 = 0;
-        word_A808 = 0;
-        word_A842 = rand() % 2;
-        if (rand() % 3 == 0) {
-            sub_2ABF(word_C0B0);
-        }
-        word_A8A0 = 97;
-        break;
-    case 153:
-        break;
-    case 154:
-        break;
-    case 4:
-        if (word_CA50 / 2 - 20 > word_A800) {
-            word_A2AA = 1;
-        } else {
-            word_A2AA = -1;
-        }
-        word_A804 = 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 5;
-        break;
-    case 5:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A800 < -40 || word_A800 > word_CA50) {
-            word_A8A0 = 6;
-        }
-        break;
-    case 6:
-        word_A8A0 = word_A29A[rand() % 8];
-        break;
-    case 7:
-        word_A7FE = 0;
-        if ((rand() & 1) == 0) {
-            word_A7FE = 1;
-        }
-        if (word_A7FE != 0) {
-            sub_3DF0();
-        }
-        word_A804 = 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 = rand() % 10 + 10;
-        word_A8A0 = 8;
-        break;
-    case 8:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A7FE != 0) {
-            if (word_A2AA > 0) {
-                var_2 = sub_3E7C(&var_6, word_A802, word_A802 + 40, -(word_A2AA * 16 - word_A800), word_A800);
-            } else {
-                var_2 = sub_3E7C(&var_6, word_A802, word_A802 + 40, -(word_A2AA * 16 - word_A800) + 40, word_A800 + 40);
-            }
-            if (var_2 != 0) {
-                if (word_A2AA > 0) {
-                    word_A800 = var_2;
-                } else {
-                    word_A800 = var_2 - 40;
-                }
-                sub_4807(word_A800, word_A802, word_A804);
-                word_A8A0 = 30;
+                poo_state = 1;
                 break;
             }
-        }
-        if (word_A82C == 0) {
-            word_A800 -= word_A2AA * 16;
-        }
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (rand() % 50 == 0 && word_A7FC != 0) {
-            word_A8A0 = 9;
-        }
-        sub_4614(TRUE);
-        sub_46D2();
-        sub_496F(2);
-        sub_4C21(-(word_A2AA * 16 - word_A800), word_A2AA * 16 + word_A800, 2);
-        break;
-    case 9:
-        word_A806 = -11;
-        word_A808 = -(word_A2AA * 8);
-        word_A80C = word_A802;
-        word_A8A0 = 10;
-    case 10:
-        word_A800 += word_A808;
-        word_A802 += word_A806;
-        word_A806 += 2;
-        if (word_A806 >= -1 && word_A806 <= 1) {
-            word_A804 = 23;
-        } else if (word_A806 < -1) {
-            word_A804 = 30;
-        } else {
-            word_A804 = 24;
-        }
-        if (word_A80C <= word_A802) {
-            word_A802 = word_A80C;
-            word_A8A0 = 7;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_4614(FALSE);
-        sub_4C21(word_A808 + word_A800, word_A800 - word_A808, 2);
-        if (word_A8A0 == 30 && word_A80C != word_A802) {
-            word_A844 = word_A802 - word_A80C;
-        }
-        break;
-    case 11:
-        word_A7FE = 0;
-        if ((word_A7FC & !(rand() & 1)) != 0) {
-            word_A7FE = 1;
-        }
-        if (word_A7FE != 0) {
-            sub_3DF0();
-        }
-        word_A826 = rand() % 10 + 10;
-        word_A804 = 2;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 12;
-        break;
-    case 12:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A7FE != 0) {
-            if (word_A2AA > 0) {
-                var_2 = sub_3E7C(&var_6, word_A802, word_A802 + 40, -(word_A2AA * 6 - word_A800), word_A800);
-            } else {
-                var_2 = sub_3E7C(&var_6, word_A802, word_A802 + 40, -(word_A2AA * 6 - word_A800) + 40, word_A800 + 40);
-            }
-            if (var_2 != 0) {
-                if (word_A2AA > 0) {
-                    word_A800 = var_2;
-                } else {
-                    word_A800 = var_2 - 40;
-                }
-                word_A81C = var_6;
-                sub_491D(word_A81C, &stru_A81E);
-                word_A83E = stru_A81E.top - 12;
-                word_A7FC = 1;
-                word_A83C = word_A800;
-                word_A804 = 30;
-                sub_2B01(word_C0B0, word_A81C);
-                word_A8A0 = 89;
+            if (facing_direction > 0 && stru_A81E.right < x_curr && stru_A81E.top < y_curr && y_curr + 40 < stru_A81E.bottom ||
+                facing_direction < 0 && x_curr + 40 < stru_A81E.left && stru_A81E.top < y_curr &&
+                y_curr + 40 < stru_A81E.bottom) {
+                poo_state = 87;
                 break;
             }
-        }
-        if (word_A82C == 0) {
-            word_A800 -= word_A2AA * 6;
-        }
-        word_A804 = word_A804 == 2 ? 3 : 2;
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_4559();
-        sub_46D2();
-        sub_496F(1);
-        sub_4C21(-(word_A2AA * 6 - word_A800), word_A2AA * 6 + word_A800, 1);
-        break;
-    case 13:
-        word_A82A = rand() % 2;
-        word_A826 = rand() % 4 + 4;
-        if (word_A82A != 0) {
-            word_A804 = 88;
-        } else {
-            word_A804 = 86;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 14;
-        break;
-    case 14:
-        if (word_A83A++ < 3) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A82C == 0) {
-            word_A800 -= word_A2AA * 6;
-        }
-        if (word_A82A != 0) {
-            word_A804 = word_A804 == 88 ? 89 : 88;
-        } else {
-            word_A804 = word_A804 == 86 ? 87 : 86;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_4559();
-        sub_46D2();
-        sub_496F(1);
-        break;
-    case 15:
-        word_A82A = rand() % 2;
-        word_A826 = rand() % 3 + 3;
-        if (word_A82A != 0) {
-            word_A804 = 54;
-        } else {
-            word_A804 = 52;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 16;
-        break;
-    case 16:
-        if (word_A83A++ < 3) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A82A != 0) {
-            word_A804 = word_A804 == 54 ? 55 : 54;
-        } else {
-            word_A804 = word_A804 == 52 ? 53 : 52;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_4559();
-        sub_46D2();
-        sub_496F(0);
-        break;
-    case 17:
-        word_A804 = 6;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 18;
-        break;
-    case 18:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 += 1;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A804 == 8) {
-            word_A804 = 0;
-            word_A8A0 = 19;
-            word_A826 = rand() % 8 + 8;
-        }
-        sub_496F(0);
-        break;
-    case 19:
-        if (word_A83A++ < 4) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A804 == 0 ? 1 : 0;
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_46D2();
-        sub_496F(0);
-        break;
-    case 20:
-        word_A82A = rand() % 3;
-        if (word_A82A == 0) {
-            word_A804 = 6;
-        } else if (word_A82A == 1) {
-            word_A804 = 31;
-        } else {
-            word_A804 = 73;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 21;
-        word_A83A = rand() % 15 + rand() % 15;
-        sub_496F(0);
-        break;
-    case 21:
-        sub_496F(0);
-        if (word_A83A-- > 0) {
-            break;
-        }
-        word_A8A0 = 22;
-        word_A826 = 0;
-        break;
-    case 22:
-        word_A804 = word_A2B4[word_A82A][word_A826];
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 7) {
-            word_A8A0 = 23;
-            word_A83A = rand() % 15 + rand() % 15;
-        }
-        sub_496F(0);
-        break;
-    case 23:
-        sub_496F(0);
-        if (word_A83A-- > 0) {
-            break;
-        }
-        word_A8A0 = 1;
-        break;
-    case 24:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        if ((rand() & 1) != 0) {
-            word_A82A = 0;
-        } else {
-            word_A82A = 1;
-        }
-        word_A8A0 = 25;
-        word_A826 = 0;
-        break;
-    case 25:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A82A != 0) {
-            if (word_A2AA > 0) {
-                word_A804 = word_A826 + 9;
+            word_A83C = (rand() % stru_A81E.right - stru_A81E.left) / 3 + (stru_A81E.right - stru_A81E.left) / 2 +
+                        stru_A81E.left - 20;
+            word_A83E = stru_A81E.top - 40;
+            if (word_CA50 / 2 - 20 > x_curr) {
+                facing_direction = 1;
             } else {
-                word_A804 = 11 - word_A826;
+                facing_direction = -1;
             }
-        } else {
-            if (word_A2AA > 0) {
-                word_A804 = word_A826 + 12;
-            } else {
-                word_A804 = 14 - word_A826;
-            }
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 2) {
-            word_A2AA = -word_A2AA;
-            word_A8A0 = 26;
-        }
-        sub_496F(0);
-        break;
-    case 26:
-        if (word_A83A++ < 1) {
+            sprite_index = 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 86;
             break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 1;
-        sub_496F(0);
-        break;
-    case 27:
-        word_A806 = -10;
-        word_A808 = word_A2AA * 8;
-        word_A80C = word_A802;
-        word_A848 = 0;
-        word_A8A0 = 28;
-    case 28:
-        word_A800 += word_A808;
-        word_A802 += word_A806;
-        word_A806 += 2;
-        word_A804 = word_A324[word_A848];
-        word_A848 += 1;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A804 == 64) {
-            word_A842 = 3;
-            word_A8A0 = 99;
-            break;
-        }
-        break;
-    case 29:
-        word_A83A = 0;
-        word_A826 = 0;
-        word_A82A = 0;
-        if ((rand() & 7) == 0) {
-            word_A82A = 1;
-        }
-        if (rand() % 5 == 0) {
-            word_A82A = 2;
-        }
-        word_A8A0 = 32;
-        if (word_A82A != 0) {
-            word_A8A0 = 34;
-        }
-        goto loc_4D33;
-    case 30:
-        if (word_A7FC != 0) {
-            word_A8A0 = 27;
-            goto loc_4D33;
-        } else {
-            word_A8A0 = 24;
-            goto loc_4D33;
-        }
-        word_A83A = 0;
-        word_A826 = 0;
-        word_A82A = 0;
-        if ((rand() & 7) == 0) {
-            word_A82A = 1;
-        }
-        if (rand() % 5 == 0) {
-            word_A82A = 2;
-        }
-        word_A8A0 = 31;
-    case 31:
-        sub_4C21(word_A2AA * 10 + word_A800, word_A800, 2);
-        if (word_A8A0 == 30) {
-            if (word_A826 != 0) {
-                word_A844 -= word_A324[word_A826 + 9];
-            }
-            break;
-        }
-        word_A804 = word_A324[word_A826];
-        sub_4807(word_A800, word_A802 - word_A324[word_A826 + 10], word_A804);
-        word_A826 += 1;
-        if (word_A82A != 0 && word_A804 == 66) {
-            if (word_A844 != 0) {
-                word_A802 -= word_A844;
-                word_A800 += word_A2AA * 10;
-                sub_4807(word_A800, word_A802, word_A804);
-            }
-            word_A846 = 3;
-            word_A8A0 = 34;
-            break;
-        }
-        if (word_A826 > 8) {
-            word_A8A0 = 32;
-            break;
-        }
-        word_A800 += word_A2AA * 10;
-        break;
-    case 32:
-        sub_496F(0);
-        if (word_A83A++ < 8) {
-            break;
-        }
-        word_A83A = 0;
-        word_A2AA = -word_A2AA;
-        word_A804 = 93;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 33;
-        break;
-    case 33:
-        sub_496F(0);
-        if (word_A83A++ < 15) {
-            break;
-        }
-        word_A83A = 0;
-        word_A8A0 = 1;
-        break;
-    case 34:
-        word_A800 += word_A2AA * 8;
-        if (word_A804 == 70) {
-            word_A804 = 63;
-        } else {
-            word_A804 += 1;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A82A == 2 && word_A804 == 70) {
-            word_A8A0 = 69;
-            break;
-        }
-        if (word_A800 > word_CA50 || word_A800 < -40) {
-            word_A8A0 = 1;
-        }
-        sub_4C21(word_A2AA * 8 + word_A800, -(word_A2AA * 8 - word_A800), 2);
-        if (word_A8A0 == 30) {
-            if (word_A846-- > 0) {
-                word_A2AA = -word_A2AA;
-                word_A8A0 = 34;
-            } else {
-                word_A8A0 = 34;
-            }
-        }
-        sub_496F(2);
-        break;
-    case 35:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 37;
-        word_A826 = 0;
-        break;
-    case 36:
-        break;
-    case 37:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A2AA > 0) {
-            word_A804 = word_A826 + 12;
-        } else {
-            word_A804 = 14 - word_A826;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 1) {
-            word_A804 = 103;
-            word_A8A0 = 38;
-        }
-        sub_496F(0);
-        break;
-    case 38:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A804 += 1;
-        if (word_A804 > 104) {
-            word_A826 = 0;
-            word_A8A0 = 39;
-            break;
-        }
-        sub_496F(0);
-        break;
-    case 39:
-        if (word_A826 == 0) {
-            if (word_A83A++ < 10) {
+        case 86:
+            if (frame_period_counter++ < 1) {
                 break;
             }
-            word_A83A = 0;
-        } else {
-            if (word_A83A++ < 1) {
-                break;
-            }
-            word_A83A = 0;
-        }
-        if (word_A826 <= 8 || word_A826 >= 12 && word_A826 <= 12) {
-            word_A804 = word_A804 == 105 ? 106 : 105;
-        } else {
-            word_A804 = 104;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ > 15) {
-            word_A8A0 = 40;
-            word_A804 = 104;
-        }
-        sub_496F(0);
-        break;
-    case 40:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (--word_A804 < 103) {
-            word_A826 = 0;
-            word_A8A0 = 41;
-            break;
-        }
-        sub_496F(0);
-        break;
-    case 41:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A2AA > 0) {
-            word_A804 = 13 - word_A826;
-        } else {
-            word_A804 = word_A826 + 13;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 1) {
-            word_A8A0 = 42;
-        }
-        sub_496F(0);
-        break;
-    case 42:
-        sub_496F(0);
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 1;
-        word_A826 = 0;
-        break;
-    case 43:
-        sub_42C8(109, 0U, 0);
-        word_A826 = 0;
-        word_A8A0 = 44;
-    case 44:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A34C[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 45:
-        sub_42C8(108, 0U, 0);
-        word_A826 = 0;
-        word_A8A0 = 46;
-    case 46:
-        if (word_A83A++ < 0) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A362[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 47:
-        word_A826 = 0;
-        word_A8A0 = 48;
-    case 48:
-        if (word_A83A++ < 0) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A826 == 2) {
-            sub_42C8(110, 0U, 0);
-        }
-        word_A804 = word_A372[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 49:
-        word_A826 = 0;
-        word_A8A0 = 50;
-    case 50:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A38C[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 51:
-        word_A826 = 0;
-        word_A8A0 = 52;
-    case 52:
-        if (word_A83A++ < 0) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A804 == 56 ? 57 : 56;
-        if (word_A826++ > 30) {
-            word_A804 = 3;
-            word_A8A0 = 1;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 53:
-        word_A826 = 0;
-        word_A8A0 = 54;
-        sub_2A21();
-        word_A2AC = word_A2AA;
-        word_A810 = word_A802;
-        word_A812 = 149;
-        if (word_A2AA > 0) {
-            word_A80E = word_A800 - 40;
-        } else {
-            word_A80E = word_A800 + 40;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        word_C0AE = 1;
-        sub_2B01(word_CA60[8], word_C0B0);
-        break;
-    case 54:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A398[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 2) {
-            word_A800 -= word_A2AA * 8;
-            sub_4807(word_A800, word_A802, word_A804);
-            break;
-        }
-        if (word_A804 >= 149 && word_A804 <= 153) {
-            word_A812 = word_A804;
-            if (word_A812 == 153) {
-                word_A812 = 173;
-            }
-            sub_488C(word_A80E, word_A810, word_A812);
-            word_A804 = word_A398[word_A826];
-            word_A826 += 1;
-        }
-        if (word_A804 == 0) {
-            sub_2A96();
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 55:
-        break;
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 6;
-        word_A804 = 2;
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_4559();
-        sub_46D2();
-        sub_496F(1);
-        sub_4C21(-(word_A2AA * 6 - word_A800), word_A2AA * 6 + word_A800, 1);
-        word_A8A0 = 54;
-        break;
-    case 56:
-        word_A826 = 0;
-        word_A8A0 = 57;
-    case 57:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A398[word_A826];
-        word_A826 += 1;
-        if (word_A804 >= 149 && word_A804 <= 153) {
-            word_A804 = word_A398[word_A826];
-            word_A826 += 1;
-        }
-        if (word_A826 >= 16) {
-            word_A8A0 = 42;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 58:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 59;
-        word_A826 = 0;
-        break;
-    case 59:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A2AA > 0) {
-            word_A804 = word_A826 + 9;
-        } else {
-            word_A804 = 11 - word_A826;
-        }
-        word_A826 += 1;
-        if (word_A826 > 2) {
-            word_A804 = 34;
-            word_A83A = -10;
-            word_A8A0 = 60;
-            word_A826 = 0;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 60:
-        if (word_A83A++ < 0) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A2B4[5][word_A826];
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 7) {
-            word_A826 = 0;
-            word_A8A0 = 61;
-            word_A83A = -5;
-        }
-        sub_496F(0);
-        break;
-    case 61:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A2AA > 0) {
-            word_A804 = 10 - word_A826;
-        } else {
-            word_A804 = word_A826 + 10;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 1) {
-            word_A8A0 = 42;
-        }
-        sub_496F(0);
-        break;
-    case 64:
-        break;
-    case 65:
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 = 0;
-        word_A8A0 = 66;
-        break;
-    case 66:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A826 == 0) {
-            if (word_A2AA > 0) {
-                word_A804 = 9;
-            } else {
-                word_A804 = 11;
-            }
-        } else {
-            word_A804 = 10;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ > 0) {
-            word_A8A0 = 67;
-            word_A828 = (rand() % 4 + 4) * 8;
-            word_A826 = 0;
-            break;
-        }
-        sub_496F(0);
-        break;
-    case 67:
-        if (--word_A826 < 0) {
-            word_A826 = 79;
-        }
-        word_A800 -= word_A2AA * 8;
-        word_A804 = word_A524[word_A826 % 8];
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A2AA > 0 && word_A800 < 0) {
-            word_A8A0 = 30;
-        }
-        if (word_A2AA < 0 && word_CA50 - stru_A8A2[word_A804].width < word_A800) {
-            word_A8A0 = 30;
-        }
-        if (--word_A828 <= 0) {
-            word_A8A0 = 68;
-            word_A826 = 0;
-        }
-        sub_496F(2);
-        sub_4C21(-(word_A2AA * 8 - word_A800), word_A2AA * 8 + word_A800, 2);
-        break;
-    case 68:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A826 == 1) {
-            if (word_A2AA > 0) {
-                word_A804 = 9;
-            } else {
-                word_A804 = 11;
-            }
-        } else if (word_A826 == 0) {
-            word_A804 = 10;
-        } else {
-            word_A804 = 3;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ > 1) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_496F(0);
-        break;
-    case 62:
-        word_A8A0 = 63;
-        word_A826 = 0;
-        break;
-    case 63:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A50C[word_A826];
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        sub_496F(0);
-        break;
-    case 75:
-        word_A826 = rand() % 8 + 8;
-        word_A828 = word_A826;
-        word_A804 = 131;
-        if (word_A2AA > 0) {
-            word_A804 = 12;
-        } else {
-            word_A804 = 14;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 76;
-        break;
-    case 76:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 13;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 77;
-        break;
-    case 77:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A804 == 131 ? 132 : 131;
-        word_A802 -= 8;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826-- <= 0) {
-            word_A826 = word_A828;
-            word_A8A0 = 78;
-        }
-        break;
-    case 78:
-        word_A804 = 133;
-        word_A802 += 8;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826-- <= 0) {
-            word_A8A0 = 79;
-        }
-        break;
-    case 79:
-        if (word_A83A++ < 10) {
-            break;
-        }
-        word_A83A = 0;
-        word_A8A0 = 80;
-        word_A826 = 3;
-        break;
-    case 80:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A2AA > 0) {
-            word_A804 = word_A43C[word_A826];
-            word_A826 += 1;
-        } else {
-            word_A804 = word_A44C[word_A826];
-            word_A826 += 1;
-        }
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 69:
-        word_A83A = 0;
-        word_A826 = 0;
-        word_A8A0 = 70;
-    case 70:
-        if (word_A2AA > 0) {
-            word_A804 = word_A536[word_A826 % 8];
-        } else {
-            word_A804 = word_A536[(word_A826 + 4) % 8];
-        }
-        if (word_A804 == 2) {
-            word_A804 = 3;
-            if (word_A2AA > 0) {
-                word_A2AA = -word_A2AA;
-                sub_4807(word_A800, word_A802, word_A804);
-                word_A2AA = -word_A2AA;
-            } else {
-                sub_4807(word_A800, word_A802, word_A804);
-            }
-        } else if (word_A804 == 3) {
-            if (word_A2AA < 0) {
-                word_A2AA = -word_A2AA;
-                sub_4807(word_A800, word_A802, word_A804);
-                word_A2AA = -word_A2AA;
-            } else {
-                sub_4807(word_A800, word_A802, word_A804);
-            }
-        } else {
-            sub_4807(word_A800, word_A802, word_A804);
-        }
-        if (word_A826++ >= 16) {
-            word_A804 = 70;
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A8A0 = 71;
-        }
-        sub_496F(0);
-        break;
-    case 71:
-        sub_496F(0);
-        if (word_A83A++ < 14) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 96;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 72;
-        break;
-    case 72:
-        sub_496F(0);
-        if (word_A83A++ < 30) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 1;
-        break;
-    case 73:
-        word_A826 = 0;
-        word_A8A0 = 74;
-    case 74:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A422[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_496F(0);
-        break;
-    case 81:
-        word_A804 = 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 82;
-        break;
-    case 82:
-        word_A83A = 0;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 83:
-        break;
-    case 84:
-        word_A8A0 = 0;
-        break;
-    case 85:
-        word_A81C = GetActiveWindow();
-        if (word_A81C == word_C0B0 || word_A81C == word_CA60[8] || word_A81C == NULL || sub_39D6(word_A81C)) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_491D(word_A81C, &stru_A81E);
-        if (stru_A81E.top < 10) {
-            word_A8A0 = 1;
-            break;
-        }
-        if (word_A2AA > 0 && stru_A81E.right < word_A800 && stru_A81E.top < word_A802 && word_A802 + 40 < stru_A81E.bottom || word_A2AA < 0 && word_A800 + 40 < stru_A81E.left && stru_A81E.top < word_A802 && word_A802 + 40 < stru_A81E.bottom) {
-            word_A8A0 = 87;
-            break;
-        }
-        word_A83C = (rand() % stru_A81E.right - stru_A81E.left) / 3 + (stru_A81E.right - stru_A81E.left) / 2 + stru_A81E.left - 20;
-        word_A83E = stru_A81E.top - 40;
-        if (word_CA50 / 2 - 20 > word_A800) {
-            word_A2AA = 1;
-        } else {
-            word_A2AA = -1;
-        }
-        word_A804 = 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 86;
-        break;
-    case 86:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A800 < -40 || word_A800 > word_CA50) {
-            if (!sub_48F3(word_A81C)) {
-                word_A8A0 = 1;
-                break;
-            }
-            if (rand() % 3 == 0) {
-                word_A8A0 = 3;
-                goto loc_4D33;
-            }
-            word_A840 = 0;
-            word_A8A0 = 92;
-            word_A7FC = 1;
-            word_A800 = word_A83C;
-            word_A802 = -40;
-            word_A806 = 0;
-            word_A808 = 0;
-            word_A842 = rand() % 2;
-            if (word_A842 != 0) {
-                word_A808 = -(word_A2AA * 3);
-            }
-            sub_2B01(word_C0B0, word_A81C);
-        }
-        break;
-    case 87:
-        sub_2B01(word_C0B0, word_A81C);
-        if (word_A2AA > 0) {
-            word_A83C = stru_A81E.right;
-            word_A83E = stru_A81E.top;
-        } else {
-            word_A83C = stru_A81E.left - 40;
-            word_A83E = stru_A81E.top;
-        }
-        word_A8A0 = 88;
-    case 88:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        if (word_A83C >= word_A800 && word_A2AA > 0 || word_A83C <= word_A800 && word_A2AA < 0) {
-            if (!sub_48F3(word_A81C)) {
-                word_A8A0 = 1;
-                break;
-            }
-            sub_491D(word_A81C, &var_10);
-            if (var_10.left == stru_A81E.left && var_10.right == stru_A81E.right && var_10.top < word_A802 && word_A802 + 40 < var_10.bottom) {
-                word_A83E = var_10.top - 12;
-                word_A7FC = 1;
-                word_A800 = word_A83C;
-                word_A804 = 30;
-                word_A8A0 = 89;
-                break;
-            } else {
-                word_A8A0 = 1;
-                break;
-            }
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 89:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A802 -= 6;
-        word_A804 = word_A804 == 15 ? 16 : 15;
-        if (word_A83E >= word_A802) {
-            word_A8A0 = 90;
-            break;
-        }
-        sub_4B3B();
-        break;
-    case 90:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 8;
-        word_A802 = word_A83E - 20;
-        word_A804 = 76;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 91;
-        break;
-    case 91:
-        if (word_A83A++ < 2) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 += word_A2AA * -24;
-        word_A802 -= 8;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 11;
-        break;
-    case 92:
-        word_A806 += 4;
-        word_A80C = word_A802;
-        word_A800 += word_A808;
-        word_A802 += word_A806;
-        if ((var_4 = sub_419E(word_A81C, stru_A8A2[word_A804].height + word_A802, stru_A8A2[word_A804].height + word_A80C, word_A800, stru_A8A2[word_A804].width + word_A800)) != 0) {
-            if (var_4 == -1) {
-                sub_4807(word_A800, word_A802, word_A804);
-                word_A8A0 = 0;
-                break;
-            }
-            word_A802 = var_4 - stru_A8A2[word_A804].height;
-            if (word_A806 < 64 && word_A840 == 0 || word_A806 < 8) {
-                SetWindowPos(word_C0B0, word_A81C, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
-                word_A840 = 0;
-                word_A826 = 0;
-                word_A8A0 = 93;
-                if (word_A806 < 36) {
-                    word_A804 = 49;
-                    word_A83A = -4;
-                } else {
-                    if ((rand() & 3) == 0) {
-                        word_A804 = 48;
-                    } else {
-                        word_A804 = 42;
-                    }
-                    word_A83A = -12;
-                }
-                sub_4807(word_A800, word_A802, word_A804);
-                break;
-            } else {
-                word_A806 = word_A806 * 2 / -3;
-                word_A840 = 1;
-            }
-        }
-        if (word_A842 != 0) {
-            word_A804 = word_A804 == 4 ? 5 : 4;
-        } else {
-            word_A804 = 42;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 93:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A842 != 0) {
-            word_A8A0 = 11;
-            word_A804 = 2;
-            break;
-        }
-        if (word_A826 == 0) {
-            word_A804 = 13;
-        } else if (word_A826 == 1) {
-            if (word_A2AA > 0) {
-                word_A804 = 12;
-            } else {
-                word_A804 = 14;
-            }
-        } else if (word_A826 == 2) {
-            word_A804 = 3;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ >= 2) {
-            word_A8A0 = 11;
-        }
-        break;
-    case 94:
-        word_A7FC = 1;
-        word_A806 = 0;
-        word_A808 = -(word_A2AA * 8);
-        word_A842 = 1;
-        word_A8A0 = 99;
-        goto loc_4D33;
-    case 95:
-        word_A7FC = 1;
-        word_A806 = 0;
-        word_A808 = -(word_A2AA * 3);
-        word_A842 = 1;
-        word_A8A0 = 99;
-        goto loc_4D33;
-    case 96:
-        word_A7FC = 1;
-        word_A806 = 0;
-        word_A808 = 0;
-        word_A842 = 0;
-        word_A8A0 = 99;
-        goto loc_4D33;
-    case 97:
-        word_A7FC = 1;
-        word_A806 = 0;
-        word_A808 = 0;
-        word_A842 = 1;
-        word_A8A0 = 99;
-        goto loc_4D33;
-    case 98:
-        word_A7FC = 1;
-        word_A806 = 0;
-        word_A808 = 0;
-        word_A842 = 2;
-        word_A8A0 = 99;
-        goto loc_4D33;
-    case 99:
-        sub_3DF0();
-        word_A806 += 4;
-        word_A80C = word_A802;
-        word_A800 += word_A808;
-        word_A802 += word_A806;
-        if (word_A80C > word_CA52) {
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A8A0 = 0;
-            break;
-        }
-        if ((var_4 = sub_408C(&word_A81C, stru_A8A2[word_A804].height + word_A802, stru_A8A2[word_A804].height + word_A80C, word_A800, stru_A8A2[word_A804].width + word_A800)) != 0) {
-            if (!sub_48F3(word_A81C)) {
-                sub_4807(word_A800, word_A802, word_A804);
-                word_A8A0 = 0;
-                break;
-            }
-            sub_491D(word_A81C, &stru_A81E);
-            word_A802 = var_4 - stru_A8A2[word_A804].height;
-            if (word_A842 == 3) {
-                word_A804 = 66;
-                sub_4807(word_A800, word_A802, word_A804);
-                word_A8A0 = 29;
-                break;
-            }
-            if (word_A806 < 64 && word_A840 == 0 || word_A806 < 8) {
-                if (word_A81C != NULL) {
-                    SetWindowPos(word_C0B0, word_A81C, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
-                }
-                word_A840 = 0;
-                word_A826 = 0;
-                word_A8A0 = 100;
-                if (word_A806 < 36) {
-                    word_A804 = 49;
-                    word_A83A = -4;
-                } else {
-                    if ((rand() & 3) == 0) {
-                        word_A804 = 48;
-                    } else {
-                        word_A804 = 42;
-                    }
-                    word_A83A = -10;
-                }
-                if (word_A842 == 2) {
-                    if (word_A806 < 36) {
-                        word_A804 = 41;
-                    } else {
-                        word_A804 = 45;
-                    }
-                }
-                sub_4807(word_A800, word_A802, word_A804);
-                break;
-            } else {
-                if ((rand() & 7) == 0 && word_A840 == 0) {
-                    word_A840 = 0;
-                    word_A826 = 0;
-                    word_A8A0 = 100;
-                    word_A804 = 48;
-                    word_A83A = -12;
-                    if (word_A842 == 2) {
-                        word_A804 = 45;
-                    }
-                    sub_4807(word_A800, word_A802, word_A804);
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_curr < -40 || x_curr > word_CA50) {
+                if (!sub_48F3(word_A81C)) {
+                    poo_state = 1;
                     break;
                 }
-                word_A806 = word_A806 * 2 / -3;
-                word_A840 = 1;
+                if (rand() % 3 == 0) {
+                    poo_state = 3;
+                    goto loc_4D33;
+                }
+                word_A840 = 0;
+                poo_state = 92;
+                word_A7FC = 1;
+                x_curr = word_A83C;
+                y_curr = -40;
+                y_speed = 0;
+                word_A808 = 0;
+                word_A842 = rand() % 2;
+                if (word_A842 != 0) {
+                    word_A808 = -(facing_direction * 3);
+                }
+                sub_2B01(dude, word_A81C);
             }
-        }
-        if (word_A842 == 2) {
-            word_A804 = word_A804 == 40 ? 41 : 40;
-        } else if (word_A842 == 1) {
-            word_A804 = word_A804 == 4 ? 5 : 4;
-        } else if (word_A842 == 0) {
-            word_A804 = 42;
-        } else {
-            word_A804 = word_A324[word_A848];
-            word_A848 += 1;
-            if (word_A804 == 66) {
-                word_A848 -= 1;
-            }
-        }
-        if (word_A842 == 3 && sub_4C91(word_A800, word_A800 - word_A808) != 0) {
-            word_A2AA = -word_A2AA;
-            word_A8A0 = 30;
             break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 100:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A842 == 1) {
-            word_A8A0 = 11;
-            word_A804 = 2;
-            break;
-        }
-        if (word_A842 == 2) {
-            word_A826 = 0;
-            word_A8A0 = 101;
-            break;
-        }
-        if (word_A826 == 0) {
-            word_A804 = 13;
-        } else if (word_A826 == 1) {
-            if (word_A2AA > 0) {
-                word_A804 = 12;
+        case 87:
+            sub_2B01(dude, word_A81C);
+            if (facing_direction > 0) {
+                word_A83C = stru_A81E.right;
+                word_A83E = stru_A81E.top;
             } else {
-                word_A804 = 14;
+                word_A83C = stru_A81E.left - 40;
+                word_A83E = stru_A81E.top;
             }
-        } else if (word_A826 == 2) {
-            word_A804 = 3;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ >= 2) {
-            word_A8A0 = 11;
-        }
-        break;
-    case 101:
-        if (word_A83A++ < 1) {
+            poo_state = 88;
+        case 88:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            if (word_A83C >= x_curr && facing_direction > 0 || word_A83C <= x_curr && facing_direction < 0) {
+                if (!sub_48F3(word_A81C)) {
+                    poo_state = 1;
+                    break;
+                }
+                sub_491D(word_A81C, &var_10);
+                if (var_10.left == stru_A81E.left && var_10.right == stru_A81E.right && var_10.top < y_curr &&
+                    y_curr + 40 < var_10.bottom) {
+                    word_A83E = var_10.top - 12;
+                    word_A7FC = 1;
+                    x_curr = word_A83C;
+                    sprite_index = 30;
+                    poo_state = 89;
+                    break;
+                } else {
+                    poo_state = 1;
+                    break;
+                }
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
             break;
-        }
-        word_A83A = 0;
-        if (word_A826 == 0) {
-            word_A804 = 31;
-            word_A83A = -8;
-        } else if (word_A826 == 2) {
-            word_A804 = 3;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ >= 6) {
-            word_A8A0 = 11;
-        }
-        break;
-    case 102:
-        sub_428E();
-        word_A826 = 6;
-        word_A804 = 3;
-        word_A82A = 0;
-        if (rand() % 3 == 0) {
-            word_A82A = 1;
-        }
-        word_A8A0 = 103;
-    case 103:
-        if (word_A82A != 0) {
-            word_A804 = word_A804 == 50 ? 51 : 50;
-        } else {
-            word_A804 = word_A804 == 4 ? 5 : 4;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826-- <= 0) {
-            word_A8A0 = 97;
-        }
-        break;
-    case 104:
-        word_A842 = 0;
-        word_A8A0 = 106;
-        goto loc_4D33;
-    case 105:
-        word_A842 = 1;
-        word_A8A0 = 106;
-        goto loc_4D33;
-    case 106:
-        if (word_A842 == 0) {
-            var_14.x = word_A800;
-            var_14.y = word_A802 + 39;
-            *(HWND *)&var_10 = WindowFromPoint(var_14);
-            var_14.x = word_A800 + 39;
-            var_8 = WindowFromPoint(var_14);
-            if (*(HWND *)&var_10 == word_C0B0 && var_8 == word_C0B0) {
-                sub_2ABF(word_C0B0);
-            } else if (*(HWND *)&var_10 == word_C0B0) {
-                sub_2B01(word_C0B0, var_8);
-            } else {
-                sub_2B01(word_C0B0, *(HWND *)&var_10);
+        case 89:
+            if (frame_period_counter++ < 1) {
+                break;
             }
-            word_A804 = 81;
-        } else {
-            word_A804 = 78;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 107;
-        word_A826 = 0;
-        break;
-    case 107:
-        word_A804 = word_A2B4[4 - word_A842][word_A826];
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 7) {
+            frame_period_counter = 0;
+            update_sprite(x_curr, y_curr, sprite_index);
+            y_curr -= 6;
+            sprite_index = sprite_index == 15 ? 16 : 15;
+            if (word_A83E >= y_curr) {
+                poo_state = 90;
+                break;
+            }
+            sub_4B3B();
+            break;
+        case 90:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 8;
+            y_curr = word_A83E - 20;
+            sprite_index = 76;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 91;
+            break;
+        case 91:
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr += facing_direction * -24;
+            y_curr -= 8;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 11;
+            break;
+        case 92:
+            y_speed += 4;
+            word_A80C = y_curr;
+            x_curr += word_A808;
+            y_curr += y_speed;
+            if ((var_4 = sub_419E(word_A81C, sprites[sprite_index].height + y_curr,
+                                  sprites[sprite_index].height + word_A80C, x_curr,
+                                  sprites[sprite_index].width + x_curr)) != 0) {
+                if (var_4 == -1) {
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    poo_state = 0;
+                    break;
+                }
+                y_curr = var_4 - sprites[sprite_index].height;
+                if (y_speed < 64 && word_A840 == 0 || y_speed < 8) {
+                    SetWindowPos(dude, word_A81C, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
+                    word_A840 = 0;
+                    animation_frame = 0;
+                    poo_state = 93;
+                    if (y_speed < 36) {
+                        sprite_index = 49;
+                        frame_period_counter = -4;
+                    } else {
+                        if ((rand() & 3) == 0) {
+                            sprite_index = 48;
+                        } else {
+                            sprite_index = 42;
+                        }
+                        frame_period_counter = -12;
+                    }
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    break;
+                } else {
+                    y_speed = y_speed * 2 / -3;
+                    word_A840 = 1;
+                }
+            }
             if (word_A842 != 0) {
-                if ((rand() & 1) == 0) {
-                    word_A8A0 = 111;
-                } else {
-                    word_A8A0 = 109;
-                }
+                sprite_index = sprite_index == 4 ? 5 : 4;
             } else {
-                if ((rand() & 1) == 0) {
-                    word_A8A0 = 111;
+                sprite_index = 42;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            break;
+        case 93:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A842 != 0) {
+                poo_state = 11;
+                sprite_index = 2;
+                break;
+            }
+            if (animation_frame == 0) {
+                sprite_index = 13;
+            } else if (animation_frame == 1) {
+                if (facing_direction > 0) {
+                    sprite_index = 12;
                 } else {
-                    word_A8A0 = 108;
+                    sprite_index = 14;
+                }
+            } else if (animation_frame == 2) {
+                sprite_index = 3;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame++ >= 2) {
+                poo_state = 11;
+            }
+            break;
+        case 94:
+            word_A7FC = 1;
+            y_speed = 0;
+            word_A808 = -(facing_direction * 8);
+            word_A842 = 1;
+            poo_state = 99;
+            goto loc_4D33;
+        case 95:
+            word_A7FC = 1;
+            y_speed = 0;
+            word_A808 = -(facing_direction * 3);
+            word_A842 = 1;
+            poo_state = 99;
+            goto loc_4D33;
+        case 96:
+            word_A7FC = 1;
+            y_speed = 0;
+            word_A808 = 0;
+            word_A842 = 0;
+            poo_state = 99;
+            goto loc_4D33;
+        case 97:
+            word_A7FC = 1;
+            y_speed = 0;
+            word_A808 = 0;
+            word_A842 = 1;
+            poo_state = 99;
+            goto loc_4D33;
+        case 98:
+            word_A7FC = 1;
+            y_speed = 0;
+            word_A808 = 0;
+            word_A842 = 2;
+            poo_state = 99;
+            goto loc_4D33;
+        case 99:
+            sub_3DF0();
+            y_speed += 4;
+            word_A80C = y_curr;
+            x_curr += word_A808;
+            y_curr += y_speed;
+            if (word_A80C > word_CA52) {
+                update_sprite(x_curr, y_curr, sprite_index);
+                poo_state = 0;
+                break;
+            }
+            if ((var_4 = sub_408C(&word_A81C, sprites[sprite_index].height + y_curr,
+                                  sprites[sprite_index].height + word_A80C, x_curr,
+                                  sprites[sprite_index].width + x_curr)) != 0) {
+                if (!sub_48F3(word_A81C)) {
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    poo_state = 0;
+                    break;
+                }
+                sub_491D(word_A81C, &stru_A81E);
+                y_curr = var_4 - sprites[sprite_index].height;
+                if (word_A842 == 3) {
+                    sprite_index = 66;
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    poo_state = 29;
+                    break;
+                }
+                if (y_speed < 64 && word_A840 == 0 || y_speed < 8) {
+                    if (word_A81C != NULL) {
+                        SetWindowPos(dude, word_A81C, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE);
+                    }
+                    word_A840 = 0;
+                    animation_frame = 0;
+                    poo_state = 100;
+                    if (y_speed < 36) {
+                        sprite_index = 49;
+                        frame_period_counter = -4;
+                    } else {
+                        sprite_index = (rand() & 3) == 0 ? 67 : 49; //dude textures for landing
+                        frame_period_counter = -10;
+                    }
+                    if (word_A842 == 2) {
+                        if (y_speed < 36) {
+                            sprite_index = 41;
+                        } else {
+                            sprite_index = 45;
+                        }
+                    }
+                    update_sprite(x_curr, y_curr, sprite_index);
+                    break;
+                } else {
+                    if ((rand() & 7) == 0 && word_A840 == 0) {
+                        word_A840 = 0;
+                        animation_frame = 0;
+                        poo_state = 100;
+                        sprite_index = 48;
+                        frame_period_counter = -12;
+                        if (word_A842 == 2) {
+                            sprite_index = 45;
+                        }
+                        update_sprite(x_curr, y_curr, sprite_index);
+                        break;
+                    }
+                    y_speed = y_speed * 2 / -3;
+                    word_A840 = 1;
                 }
             }
-        }
-        break;
-    case 108:
-        if (word_A83A++ < 10) {
+            if (word_A842 == 2) {
+                sprite_index = sprite_index == 40 ? 41 : 40;
+            } else if (word_A842 == 1) {
+                sprite_index = sprite_index == 4 ? 5 : 4;
+            } else if (word_A842 == 0) {
+                sprite_index = 42;
+            } else {
+                sprite_index = word_A324[word_A848];
+                word_A848 += 1;
+                if (sprite_index == 66) {
+                    word_A848 -= 1;
+                }
+            }
+            if (word_A842 == 3 && sub_4C91(x_curr, x_curr - word_A808) != 0) {
+                facing_direction = -facing_direction;
+                poo_state = 30;
+                break;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
             break;
-        }
-        word_A83A = 0;
-        word_A804 = 3;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 1;
-        break;
-    case 109:
-        word_A808 = -(word_A2AA * 14);
-        word_A804 = 23;
-        word_A800 += word_A808;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 95;
-        word_A826 = 0;
-        break;
-    case 110:
-        word_A800 += word_A808;
-        word_A808 += word_A2AA;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826++ > 3) {
-            word_A8A0 = 95;
-        }
-        break;
-    case 111:
-        if (word_A842 != 0) {
-            word_A800 += word_A2AA * -26;
-            word_A802 += 35;
-            word_A2AA = -word_A2AA;
-        } else {
-            word_A82A = rand() % 2;
+        case 100:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (word_A842 == 1) {
+                poo_state = 11;
+                sprite_index = 2;
+                break;
+            }
+            if (word_A842 == 2) {
+                animation_frame = 0;
+                poo_state = 101;
+                break;
+            }
+            if (animation_frame == 0) {
+                sprite_index = 13;
+            } else if (animation_frame == 1) {
+                if (facing_direction > 0) {
+                    sprite_index = 12;
+                } else {
+                    sprite_index = 14;
+                }
+            } else if (animation_frame == 2) {
+                sprite_index = 3;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame++ >= 2) {
+                poo_state = 11;
+            }
+            break;
+        case 101:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (animation_frame == 0) {
+                sprite_index = 31;
+                frame_period_counter = -8;
+            } else if (animation_frame == 2) {
+                sprite_index = 3;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame++ >= 6) {
+                poo_state = 11;
+            }
+            break;
+        case 102:
+            sub_428E();
+            animation_frame = 6;
+            sprite_index = 3;
+            word_A82A = 0;
+            if (rand() % 3 == 0) {
+                word_A82A = 1;
+            }
+            poo_state = 103;
+        case 103:
             if (word_A82A != 0) {
-                word_A802 += 36;
+                sprite_index = sprite_index == 50 ? 51 : 50;
             } else {
-                word_A802 += 20;
+                sprite_index = sprite_index == 4 ? 5 : 4;
             }
-        }
-        word_A826 = 0;
-        word_A8A0 = 112;
-    case 112:
-        if (word_A826 == 0) {
-            if (word_A83A++ < 10) {
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame-- <= 0) {
+                poo_state = 97;
+            }
+            break;
+        case 104:
+            word_A842 = 0;
+            poo_state = 106;
+            goto loc_4D33;
+        case 105:
+            word_A842 = 1;
+            poo_state = 106;
+            goto loc_4D33;
+        case 106:
+            if (word_A842 == 0) {
+                var_14.x = x_curr;
+                var_14.y = y_curr + 39;
+                *(HWND *) &var_10 = WindowFromPoint(var_14);
+                var_14.x = x_curr + 39;
+                var_8 = WindowFromPoint(var_14);
+                if (*(HWND *) &var_10 == dude && var_8 == dude) {
+                    place_window_as_top(dude);
+                } else if (*(HWND *) &var_10 == dude) {
+                    sub_2B01(dude, var_8);
+                } else {
+                    sub_2B01(dude, *(HWND *) &var_10);
+                }
+                sprite_index = 81;
+            } else {
+                sprite_index = 78;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 107;
+            animation_frame = 0;
+            break;
+        case 107:
+            sprite_index = word_A2B4[4 - word_A842][animation_frame];
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 7) {
+                if (word_A842 != 0) {
+                    if ((rand() & 1) == 0) {
+                        poo_state = 111;
+                    } else {
+                        poo_state = 109;
+                    }
+                } else {
+                    if ((rand() & 1) == 0) {
+                        poo_state = 111;
+                    } else {
+                        poo_state = 108;
+                    }
+                }
+            }
+            break;
+        case 108:
+            if (frame_period_counter++ < 10) {
                 break;
             }
-            word_A83A = 0;
-        } else {
-            if (word_A83A++ < 1) {
-                break;
+            frame_period_counter = 0;
+            sprite_index = 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 1;
+            break;
+        case 109:
+            word_A808 = -(facing_direction * 14);
+            sprite_index = 23;
+            x_curr += word_A808;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 95;
+            animation_frame = 0;
+            break;
+        case 110:
+            x_curr += word_A808;
+            word_A808 += facing_direction;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame++ > 3) {
+                poo_state = 95;
             }
-            word_A83A = 0;
-        }
-        if (word_A842 != 0) {
-            word_A804 = word_A804 == 40 ? 41 : 40;
-        } else {
-            word_A804 = word_A314[word_A82A][word_A826 % 4];
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A826 += 1;
-        if (word_A826 > 12) {
+            break;
+        case 111:
             if (word_A842 != 0) {
-                word_A8A0 = 98;
+                x_curr += facing_direction * -26;
+                y_curr += 35;
+                facing_direction = -facing_direction;
             } else {
-                word_A8A0 = 96;
+                word_A82A = rand() % 2;
+                if (word_A82A != 0) {
+                    y_curr += 36;
+                } else {
+                    y_curr += 20;
+                }
             }
-        }
-        break;
-    case 113:
-        word_CA76 = 1;
-        word_A804 = 6;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 114;
-        break;
-    case 114:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 += 1;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A804 == 8) {
-            word_A804 = 0;
-            word_A8A0 = 115;
-        }
-        sub_496F(0);
-        break;
-    case 115:
-        sub_496F(0);
-        if (word_A83A++ < 4) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A804 == 0 ? 1 : 0;
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 116:
-        word_A800 = word_CA50;
-        word_A802 = word_CA52 * 7 / 8;
-        word_A804 = 4;
-        word_A2AA = 1;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 117;
-        break;
-    case 117:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_CA50 / 2 - 20 >= word_A800) {
-            word_A8A0 = 118;
-        }
-        break;
-    case 118:
-        sub_2A21();
-        word_A2AC = -1;
-        word_A80E = -40;
-        word_A810 = word_CA52 / 8;
-        word_A812 = 154;
-        word_A826 = 0;
-        word_A8A0 = 119;
-        word_C0AE = 0;
-        sub_2ABF(word_C0B0);
-        sub_2ABF(word_CA60[8]);
-        break;
-    case 119:
-        if (word_A826 != 0) {
-            word_A804 = word_A2B4[2][word_A826];
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A826 += 1;
-            if (word_A826 > 7) {
-                word_A826 = 0;
+            animation_frame = 0;
+            poo_state = 112;
+        case 112:
+            if (animation_frame == 0) {
+                if (frame_period_counter++ < 10) {
+                    break;
+                }
+                frame_period_counter = 0;
+            } else {
+                if (frame_period_counter++ < 1) {
+                    break;
+                }
+                frame_period_counter = 0;
             }
-        } else {
-            word_A804 = 73;
-            sub_4807(word_A800, word_A802, word_A804);
-            if (rand() % 20 == 0) {
-                word_A826 = 1;
+            if (word_A842 != 0) {
+                sprite_index = sprite_index == 40 ? 41 : 40;
+            } else {
+                sprite_index = word_A314[word_A82A][animation_frame % 4];
             }
-        }
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A80E -= word_A2AC * 16;
-        word_A812 = word_A812 == 154 ? 155 : 154;
-        sub_488C(word_A80E, word_A810, word_A812);
-        if (word_A80E > word_A800) {
-            word_A2AA = -1;
-            sub_4807(word_A800, word_A802, word_A804);
-        }
-        if (word_A80E > word_CA50) {
-            sub_2A96();
-            word_A8A0 = 120;
-        }
-        break;
-    case 120:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A800 > word_CA50) {
-            word_A8A0 = 1;
-        }
-        break;
-    case 121:
-        word_A800 = word_CA50;
-        word_A802 = word_CA52 * 7 / 8;
-        word_A804 = 4;
-        word_A2AA = 1;
-        sub_2A21();
-        word_A2AC = -1;
-        word_A80E = -40;
-        word_A810 = word_CA52 * 7 / 8;
-        word_A812 = 154;
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_488C(word_A80E, word_A810, word_A812);
-        word_A8A0 = 122;
-        word_C0AE = 0;
-        sub_2ABF(word_C0B0);
-        sub_2ABF(word_CA60[8]);
-        break;
-    case 122:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        word_A80E -= word_A2AC * 16;
-        word_A812 = word_A812 == 154 ? 155 : 154;
-        if (word_A800 - word_A80E <= 46) {
-            word_A800 = word_CA50 / 2 + 3;
-            word_A80E = word_CA50 / 2 - 43;
-            word_A804 = 3;
-            word_A812 = 157;
-            sub_4807(word_A800, word_A802, word_A804);
-            sub_488C(word_A80E, word_A810, word_A812);
-            word_A826 = 0;
-            word_A8A0 = 123;
-        } else {
-            sub_4807(word_A800, word_A802, word_A804);
-            sub_488C(word_A80E, word_A810, word_A812);
-        }
-        break;
-    case 123:
-        if (word_A83A++ < 3) {
-            break;
-        }
-        word_A83A = 0;
-        word_A804 = word_A826 + 127;
-        word_A826 += 1;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A826 >= 4) {
-            word_A8A0 = 124;
-        }
-        break;
-    case 124:
-        if (word_A83A++ < 4) {
-            break;
-        }
-        word_A83A = 0;
-        word_CA46 += 1;
-        if (word_CA46 > 8) {
-            sub_2A96();
-            word_A826 = 0;
-            word_A8A0 = 125;
-        }
-        break;
-    case 125:
-        word_A804 = word_A45C[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A8A0 = 1;
-            break;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 126:
-        word_A800 = word_CA50;
-        word_A802 = word_CA52 * 7 / 8;
-        word_A804 = 4;
-        word_A2AA = 1;
-        sub_2A21();
-        word_A2AC = 1;
-        word_A80E = word_CA50 + 46;
-        word_A810 = word_CA52 * 7 / 8;
-        word_A812 = 154;
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_488C(word_A80E, word_A810, word_A812);
-        word_A8A0 = 127;
-        word_C0AE = 0;
-        sub_2ABF(word_C0B0);
-        sub_2ABF(word_CA60[8]);
-        break;
-    case 127:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        word_A80E -= word_A2AC * 16;
-        word_A812 = word_A812 == 154 ? 155 : 154;
-        if (word_A80E < -40) {
-            sub_2A96();
-            word_A8A0 = 1;
-        } else {
-            sub_4807(word_A800, word_A802, word_A804);
-            sub_488C(word_A80E, word_A810, word_A812);
-        }
-        break;
-    case 128:
-        word_A800 = word_CA50;
-        word_A802 = word_CA52 * 7 / 8;
-        word_A804 = 4;
-        word_A2AA = 1;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 129;
-        break;
-    case 129:
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_CA50 / 2 - 20 >= word_A800) {
-            word_A8A0 = 130;
-        }
-        break;
-    case 130:
-        sub_2A21();
-        word_A2AC = -1;
-        word_A80E = -40;
-        word_A810 = word_CA52 / 8;
-        word_A812 = 158;
-        word_A826 = 0;
-        word_A8A0 = 131;
-        word_C0AE = 0;
-        sub_2ABF(word_C0B0);
-        sub_2ABF(word_CA60[8]);
-        break;
-    case 131:
-        if (word_A826 != 0) {
-            word_A804 = word_A2B4[2][word_A826];
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A826 += 1;
-            if (word_A826 > 7) {
-                word_A826 = 0;
+            update_sprite(x_curr, y_curr, sprite_index);
+            animation_frame += 1;
+            if (animation_frame > 12) {
+                if (word_A842 != 0) {
+                    poo_state = 98;
+                } else {
+                    poo_state = 96;
+                }
             }
-        } else {
-            word_A804 = 73;
-            sub_4807(word_A800, word_A802, word_A804);
-            if (rand() % 20 == 0) {
-                word_A826 = 1;
+            break;
+        case 113:
+            word_CA76 = 1;
+            sprite_index = 6;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 114;
+            break;
+        case 114:
+            if (frame_period_counter++ < 1) {
+                break;
             }
-        }
-        word_A80E -= word_A2AC * 16;
-        if (word_A812 == 161) {
-            word_A812 = 158;
-        } else {
-            word_A812 += 1;
-        }
-        if (word_A80E > word_A800) {
-            word_A80E = word_A800;
-            word_A812 = 162;
-            word_A8A0 = 132;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        break;
-    case 132:
-        word_A804 = 73;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_CA5C += 40;
-        if (word_A802 - word_A810 - 40 <= word_CA5C) {
-            word_CA5C = word_A802 - word_A810 - 40;
+            frame_period_counter = 0;
+            sprite_index += 1;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (sprite_index == 8) {
+                sprite_index = 0;
+                poo_state = 115;
+            }
+            sub_496F(0);
+            break;
+        case 115:
+            sub_496F(0);
+            if (frame_period_counter++ < 4) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = sprite_index == 0 ? 1 : 0;
+            update_sprite(x_curr, y_curr, sprite_index);
+            break;
+        case 116:
+            x_curr = word_CA50;
+            y_curr = word_CA52 * 7 / 8;
+            sprite_index = 4;
+            facing_direction = 1;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 117;
+            break;
+        case 117:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (word_CA50 / 2 - 20 >= x_curr) {
+                poo_state = 118;
+            }
+            break;
+        case 118:
+            play_sound(109, 0U, 0);
+            sub_2A21();
+            facing_direction_sub = -1;
+            x_sub = -40;
+            y_sub = word_CA52 / 8;
+            sprite_index_sub = 154;
+            animation_frame = 0;
+            poo_state = 119;
+            word_C0AE = 0;
+            place_window_as_top(dude);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
+            break;
+        case 119:
+            if (animation_frame != 0) {
+                sprite_index = word_A2B4[2][animation_frame];
+                update_sprite(x_curr, y_curr, sprite_index);
+                animation_frame += 1;
+                if (animation_frame > 7) {
+                    animation_frame = 0;
+                }
+            } else {
+                sprite_index = 73;
+                update_sprite(x_curr, y_curr, sprite_index);
+                if (rand() % 20 == 0) {
+                    animation_frame = 1;
+                }
+            }
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_sub -= facing_direction_sub * 16;
+            sprite_index_sub = sprite_index_sub == 154 ? 155 : 154;
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            if (x_sub > x_curr) {
+                facing_direction = -1;
+                update_sprite(x_curr, y_curr, sprite_index);
+            }
+            if (x_sub > word_CA50) {
+                destroy_subwindow();
+                poo_state = 120;
+            }
+            break;
+        case 120:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_curr > word_CA50) {
+                poo_state = 1;
+            }
+            break;
+        case 121:
+            x_curr = word_CA50;
+            y_curr = word_CA52 * 7 / 8;
+            sprite_index = 4;
+            facing_direction = 1;
+            sub_2A21();
+            facing_direction_sub = -1;
+            x_sub = -40;
+            y_sub = word_CA52 * 7 / 8;
+            sprite_index_sub = 154;
+            update_sprite(x_curr, y_curr, sprite_index);
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            poo_state = 122;
+            word_C0AE = 0;
+            place_window_as_top(dude);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
+            break;
+        case 122:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            x_sub -= facing_direction_sub * 16;
+            sprite_index_sub = sprite_index_sub == 154 ? 155 : 154;
+            if (x_curr - x_sub <= 46) {
+                x_curr = word_CA50 / 2 + 3;
+                x_sub = word_CA50 / 2 - 43;
+                sprite_index = 3;
+                sprite_index_sub = 157;
+                update_sprite(x_curr, y_curr, sprite_index);
+                update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+                animation_frame = 0;
+                poo_state = 124;
+            } else {
+                update_sprite(x_curr, y_curr, sprite_index);
+                update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            }
+            break;
+        case 123:
+            if (frame_period_counter++ < 3) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = animation_frame + 127;
+            animation_frame += 1;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame >= 4) {
+                poo_state = 124;
+                animation_frame = 0;
+            }
+            break;
+        case 124: // dude getting into van
+            if (frame_period_counter++ < 2) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index = sprite_index == 2 ? 3 : 2;
+            x_curr -= 5;
+            update_sprite(x_curr, y_curr, sprite_index);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
+            place_window_as_top(dude);
+            if(animation_frame++ < 6) {
+                break;
+            }
+
+            destroy_subwindow();
+            animation_frame = 0;
+            frame_period_counter = 0;
+            drift_accel = 0;
+            x_curr = x_sub; //relocate dude to van
+            facing_direction = -1;
+            poo_state = 1245;
+            break;
+        case 1245: //van acceleration
+
+            sprite_index = 154 + (animation_frame%4);
+            x_curr += drift_accel;
+            drift_accel += 3;
+            update_sprite(x_curr, y_curr, sprite_index);
+
+            if(drift_accel <= DRIFT_SPEED)
+                break;
+
+            drift_accel = DRIFT_SPEED;
+            animation_frame = 0;
+            frame_period_counter = 0;
+            facing_direction = 1;
+            play_sound(109, 0U, 0);
+            poo_state = 125;
+        case 125: // van drifting
+            if(drift_accel > - 1.5 * DRIFT_SPEED){ // exit van speed
+                drift_accel -= 5;
+            }
+
+            sprite_index = animation_drift[animation_frame];
+            if(sprite_index == 0) {
+                animation_frame -= 4; //animation loop (4 last frames)
+                sprite_index = animation_drift[animation_frame];
+            }
+            else {
+                animation_frame++;
+            }
+            x_curr += drift_accel;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_curr < -40) {
+                destroy_subwindow();
+                poo_state = 1;
+            }
+            break;
+        case 126:
+            play_sound(109, 0U, 0);
+            x_curr = word_CA50;
+            y_curr = word_CA52 * 7 / 8;
+            sprite_index = 4;
+            facing_direction = 1;
+            sub_2A21();
+            facing_direction_sub = 1;
+            x_sub = word_CA50 + 46;
+            y_sub = word_CA52 * 7 / 8;
+            sprite_index_sub = 154;
+            update_sprite(x_curr, y_curr, sprite_index);
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            poo_state = 127;
+            word_C0AE = 0;
+            place_window_as_top(dude);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
+            break;
+        case 127:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            x_sub -= facing_direction_sub * 16;
+            sprite_index_sub = sprite_index_sub == 154 ? 155 : 154;
+            if (x_sub < -40) {
+                destroy_subwindow();
+                poo_state = 1;
+            } else {
+                update_sprite(x_curr, y_curr, sprite_index);
+                update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            }
+            break;
+        case 128:
+            x_curr = word_CA50;
+            y_curr = word_CA52 * 7 / 8;
+            sprite_index = 4;
+            facing_direction = 1;
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 129;
+            break;
+        case 129:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (word_CA50 / 2 - 20 >= x_curr) {
+                poo_state = 130;
+            }
+            break;
+        case 130:
+            sub_2A21();
+            facing_direction_sub = -1;
+            x_sub = -40;
+            y_sub = word_CA52 / 8;
+            sprite_index_sub = 158;
+            animation_frame = 0;
+            poo_state = 131;
+            word_C0AE = 0;
+            place_window_as_top(dude);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
+            break;
+        case 131:
+            if (animation_frame != 0) {
+                sprite_index = word_A2B4[2][animation_frame];
+                update_sprite(x_curr, y_curr, sprite_index);
+                animation_frame += 1;
+                if (animation_frame > 7) {
+                    animation_frame = 0;
+                }
+            } else {
+                sprite_index = 73;
+                update_sprite(x_curr, y_curr, sprite_index);
+                if (rand() % 20 == 0) {
+                    animation_frame = 1;
+                }
+            }
+            x_sub -= facing_direction_sub * 16;
+            if (sprite_index_sub == 160) {
+                sprite_index_sub = 158;
+            } else {
+                sprite_index_sub += 1;
+            }
+            if (x_sub > x_curr) {
+                x_sub = x_curr;
+                sprite_index_sub = 162;
+                poo_state = 132;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            break;
+        case 132:
+            sprite_index = 73;
+            update_sprite(x_curr, y_curr, sprite_index);
+            word_CA5C += 40;
+            if (y_curr - y_sub - 40 <= word_CA5C) {
+                word_CA5C = y_curr - y_sub - 40;
+                word_CA5C -= 20;
+                poo_state = 133;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (sprite_index_sub == 164) {
+                sprite_index_sub = 162;
+            } else {
+                sprite_index_sub += 1;
+            }
+            break;
+        case 133:
             word_CA5C -= 20;
-            word_A8A0 = 133;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A812 == 165) {
-            word_A812 = 162;
-        } else {
-            word_A812 += 1;
-        }
-        break;
-    case 133:
-        word_CA5C -= 20;
-        if (word_CA5C <= 0) {
-            word_CA5C = 0;
-            word_A802 = word_A810 + 40;
-            word_A8A0 = 134;
-            word_A804 = word_A804 == 4 ? 5 : 4;
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A812 = 158;
-            sub_488C(word_A80E, word_A810, word_A812);
-            break;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        word_A802 -= 20;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A812 == 165) {
-            word_A812 = 162;
-        } else {
-            word_A812 += 1;
-        }
-        break;
-    case 134:
-        word_A800 = -80;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A80E -= word_A2AC * 16;
-        if (word_A812 == 161) {
-            word_A812 = 158;
-        } else {
-            word_A812 += 1;
-        }
-        if (word_A80E > word_CA50) {
-            sub_2A96();
-            sub_428E();
-            word_A8A0 = 1;
-            break;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        break;
-    case 135:
-        word_A810 = word_CA52 * 7 / 8;
-        word_A2AA = -1;
-        word_A800 = -40;
-        word_A802 = word_CA52 / 8;
-        word_A804 = 158;
-        word_A826 = 0;
-        word_A8A0 = 136;
-        break;
-    case 136:
-        word_A800 -= word_A2AA * 16;
-        if (word_A804 == 161) {
-            word_A804 = 158;
-        } else {
-            word_A804 += 1;
-        }
-        if (word_CA50 / 2 - 20 < word_A800) {
-            word_A800 = word_CA50 / 2 - 20;
-            word_A804 = 162;
-            word_A8A0 = 137;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        break;
-    case 137:
-        word_CA72 += 40;
-        if (word_A810 - word_A802 - 40 <= word_CA72) {
-            word_CA72 = word_A810 - word_A802 - 40;
-            word_A8A0 = 138;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A83A++ < 1) {
-            break;
-        }
-        word_A83A = 0;
-        if (word_A804 == 165) {
-            word_A804 = 162;
-        } else {
-            word_A804 += 1;
-        }
-        break;
-    case 138:
-        if (word_A83A++ < 4) {
-            break;
-        }
-        word_A83A = 0;
-        sub_2A21();
-        word_A80E = word_A800;
-        word_A812 = 167;
-        sub_488C(word_A80E, word_A810, word_A812);
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A8A0 = 139;
-        word_C0AE = 0;
-        sub_2ABF(word_C0B0);
-        sub_2ABF(word_CA60[8]);
-        break;
-    case 139:
-        if (word_CA72 != 0) {
-            word_CA72 -= 40;
-            if (word_CA72 <= 0) {
-                word_A804 = 158;
-                word_CA72 = 0;
+            if (word_CA5C <= 0) {
+                word_CA5C = 0;
+                y_curr = y_sub + 40;
+                poo_state = 134;
+                sprite_index = sprite_index == 4 ? 5 : 4;
+                update_sprite(x_curr, y_curr, sprite_index);
+                sprite_index_sub = 158;
+                update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+                break;
             }
-            if (word_A804 == 165) {
-                word_A804 = 162;
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            y_curr -= 20;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (sprite_index_sub == 164) {
+                sprite_index_sub = 162;
             } else {
-                word_A804 += 1;
+                sprite_index_sub += 1;
             }
-        } else {
-            word_A800 -= word_A2AA * 16;
-            if (word_A804 == 161) {
-                word_A804 = 158;
+            break;
+        case 134:
+            x_curr = -80;
+            update_sprite(x_curr, y_curr, sprite_index);
+            x_sub -= facing_direction_sub * 16;
+            if (sprite_index_sub == 160) {
+                sprite_index_sub = 158;
             } else {
-                word_A804 += 1;
+                sprite_index_sub += 1;
             }
-        }
-        if (word_A800 > word_CA50) {
-            word_A8A0 = 140;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A83A++ < 1) {
+            if (x_sub > word_CA50) {
+                destroy_subwindow();
+                sub_428E();
+                poo_state = 1;
+                break;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
             break;
-        }
-        word_A83A = 0;
-        word_A812 = word_A812 == 167 ? 168 : 167;
-        sub_488C(word_A80E, word_A810, word_A812);
-        break;
-    case 140:
-        word_A812 = 166;
-        sub_488C(word_A80E, word_A810, word_A812);
-        if (word_A83A++ < 1) {
+        case 135:
+            y_sub = word_CA52 * 7 / 8;
+            facing_direction = -1;
+            x_curr = -40;
+            y_curr = word_CA52 / 8;
+            sprite_index = 158;
+            animation_frame = 0;
+            poo_state = 136;
             break;
-        }
-        word_A83A = 0;
-        word_CA46 += 1;
-        if (word_CA46 > 8) {
-            sub_2A96();
-            sub_428E();
-            word_A8A0 = 1;
-        }
-        break;
-    case 141:
-        break;
-    case 142:
-        word_A800 = -80;
-        word_A802 = word_CA52 / 8;
-        sub_4807(word_A800, word_A802, word_A804);
-        sub_2A21();
-        word_A2AC = -1;
-        word_A80E = -40;
-        word_A810 = word_CA52 * 7 / 8;
-        word_A812 = 158;
-        word_A826 = 0;
-        word_A8A0 = 143;
-        word_C0AE = 0;
-        sub_2ABF(word_C0B0);
-        sub_2ABF(word_CA60[8]);
-        break;
-    case 143:
-        word_A80E -= word_A2AC * 16;
-        if (word_A812 == 161) {
-            word_A812 = 158;
-        } else {
-            word_A812 += 1;
-        }
-        if (word_CA52 / 8 < word_A80E) {
-            word_A80E = word_CA52 / 8;
-            word_A800 = word_CA50;
-            word_A802 = word_A810;
-            word_A804 = 4;
-            word_A2AA = 1;
-            word_A8A0 = 144;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        break;
-    case 144:
-        if (word_A83A++ < 1) {
+        case 136:
+            x_curr -= facing_direction * 16;
+            if (sprite_index == 160) {
+                sprite_index = 158;
+            } else {
+                sprite_index += 1;
+            }
+            if (word_CA50 / 2 - 20 < x_curr) {
+                x_curr = word_CA50 / 2 - 20;
+                sprite_index = 162;
+                poo_state = 137;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
             break;
-        }
-        word_A83A = 0;
-        if (word_A812 == 161) {
-            word_A812 = 158;
-        } else {
-            word_A812 += 1;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        word_A800 -= word_A2AA * 16;
-        word_A804 = word_A804 == 4 ? 5 : 4;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A80E + 40 >= word_A800) {
-            word_A800 = -80;
-            sub_4807(word_A800, word_A802, word_A804);
-            word_A8A0 = 145;
-        }
-        break;
-    case 145:
-        word_A810 -= 40;
-        if (word_A812 == 161) {
-            word_A812 = 158;
-        } else {
-            word_A812 += 1;
-        }
-        if (word_A810 < -40) {
-            sub_2A96();
-            sub_428E();
-            word_A8A0 = 1;
+        case 137:
+            word_CA72 += 40;
+            if (y_sub - y_curr - 40 <= word_CA72) {
+                word_CA72 = y_sub - y_curr - 40;
+                poo_state = 138;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (sprite_index == 164) {
+                sprite_index = 162;
+            } else {
+                sprite_index += 1;
+            }
             break;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        break;
-    case 146:
-        break;
-    case 147:
-        sub_2A21();
-        word_CA56 = 1;
-        word_A2AC = 1;
-        word_A812 = 146;
-        word_A826 = 0;
-        word_A800 = word_CA50;
-        word_A802 = -40;
-        word_A2AA = 1;
-        word_A808 = word_CA50 / -96;
-        word_A806 = word_CA52 / 96;
-        word_A80E = word_A808 * 92 + word_CA50;
-        word_A810 = word_A806 * 92 - 20;
-        word_A8A0 = 148;
-        word_C0AE = 1;
-        sub_2ABF(word_CA60[8]);
-        sub_2ABF(word_C0B0);
-    case 148:
-        if (word_A83A++ < 0) {
+        case 138:
+            if (frame_period_counter++ < 4) {
+                break;
+            }
+            frame_period_counter = 0;
+            sub_2A21();
+            x_sub = x_curr;
+            sprite_index_sub = 167;
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            update_sprite(x_curr, y_curr, sprite_index);
+            poo_state = 139;
+            word_C0AE = 0;
+            place_window_as_top(dude);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
             break;
-        }
-        word_A83A = 0;
-        sub_488C(word_A80E, word_A810, word_A812);
-        word_A800 += word_A808;
-        word_A802 += word_A806;
-        word_A804 = word_A3DE[word_A826 / 3];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A826 -= 1;
-        }
-        if (word_A804 == 0 || word_A804 == 144 || word_A804 == 145) {
-            word_A804 = word_A804 == 144 ? 145 : 144;
-        }
-        if (word_A804 == 137 || word_A804 == 138) {
-            word_A804 = word_A804 == 137 ? 138 : 137;
-        }
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A80E + 10 > word_A800 || word_A810 + 20 < word_A802) {
-            word_A826 = 0;
-            word_A8A0 = 149;
-            word_A804 = 173;
-            sub_4807(word_A800, word_A802, word_A804);
+        case 139:
+            if (word_CA72 != 0) {
+                word_CA72 -= 40;
+                if (word_CA72 <= 0) {
+                    sprite_index = 158;
+                    word_CA72 = 0;
+                }
+                if (sprite_index == 164) {
+                    sprite_index = 162;
+                } else {
+                    sprite_index += 1;
+                }
+            } else {
+                x_curr -= facing_direction * 16;
+                if (sprite_index == 160) {
+                    sprite_index = 158;
+                } else {
+                    sprite_index += 1;
+                }
+            }
+            if (x_curr > word_CA50) {
+                poo_state = 140;
+            }
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            sprite_index_sub = sprite_index_sub == 167 ? 168 : 167;
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
             break;
-        }
-        break;
-    case 149:
-        if (word_A83A++ < 1) {
+        case 140:
+            sprite_index_sub = 166;
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            word_CA46 += 1;
+            if (word_CA46 > 8) {
+                destroy_subwindow();
+                sub_428E();
+                poo_state = 1;
+            }
             break;
-        }
-        word_A83A = 0;
-        word_A800 = -80;
-        sub_4807(word_A800, word_A802, word_A804);
-        word_A812 = word_A494[word_A826];
-        word_A826 += 1;
-        if (word_A812 == 0) {
-            word_A800 = word_A80E;
-            word_A802 = word_A810;
-            word_A826 = 0;
-            sub_42C8(108, 0U, 0);
-            word_A8A0 = 150;
+        case 141:
             break;
-        }
-        sub_488C(word_A80E, word_A810, word_A812);
-        break;
-    case 150:
-        word_A804 = 169;
-        word_A804 = word_A49E[word_A826];
-        word_A826 += 1;
-        if (word_A804 == 0) {
-            word_A804 = 3;
-            word_A8A0 = 151;
+        case 142:
+            x_curr = -80;
+            y_curr = word_CA52 / 8;
+            update_sprite(x_curr, y_curr, sprite_index);
+            sub_2A21();
+            facing_direction_sub = -1;
+            x_sub = -40;
+            y_sub = word_CA52 * 7 / 8;
+            sprite_index_sub = 158;
+            animation_frame = 0;
+            poo_state = 143;
+            word_C0AE = 0;
+            place_window_as_top(dude);
+            place_window_as_top(instances[MAX_INSTANCES-1]);
             break;
-        }
-        if (word_A804 >= 81 && word_A804 <= 83) {
-            sub_4807(word_A800, word_A802 - 20, word_A804);
-        } else {
-            sub_4807(word_A800, word_A802, word_A804);
-        }
-        break;
-    case 151:
-        if (word_A83A++ < 1) {
+        case 143:
+            x_sub -= facing_direction_sub * 16;
+            if (sprite_index_sub == 160) {
+                sprite_index_sub = 158;
+            } else {
+                sprite_index_sub += 1;
+            }
+            if (word_CA52 / 8 < x_sub) {
+                x_sub = word_CA52 / 8;
+                x_curr = word_CA50;
+                y_curr = y_sub;
+                sprite_index = 4;
+                facing_direction = 1;
+                poo_state = 144;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
             break;
-        }
-        word_A83A = 0;
-        word_A800 -= word_A2AA * 6;
-        word_A804 = word_A804 == 2 ? 3 : 2;
-        sub_4807(word_A800, word_A802, word_A804);
-        if (word_A800 < -40) {
-            sub_2A96();
-            word_A8A0 = 1;
+        case 144:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            if (sprite_index_sub == 160) {
+                sprite_index_sub = 158;
+            } else {
+                sprite_index_sub += 1;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            x_curr -= facing_direction * 16;
+            sprite_index = sprite_index == 4 ? 5 : 4;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_sub + 40 >= x_curr) {
+                x_curr = -80;
+                update_sprite(x_curr, y_curr, sprite_index);
+                poo_state = 145;
+            }
             break;
-        }
-        break;
-    case 152:
-        break;
-    default:
-        break;
+        case 145:
+            y_sub -= 40;
+            if (sprite_index_sub == 160) {
+                sprite_index_sub = 158;
+            } else {
+                sprite_index_sub += 1;
+            }
+            if (y_sub < -40) {
+                destroy_subwindow();
+                sub_428E();
+                poo_state = 1;
+                break;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            break;
+        case 146:
+            break;
+        case 147:
+            play_sound(109, 0U, 0);
+            sub_2A21();
+            word_CA56 = 1;
+            facing_direction_sub = 1;
+            sprite_index_sub = 146;
+            animation_frame = 0;
+            x_curr = word_CA50;
+            y_curr = -40;
+            facing_direction = 1;
+            word_A808 = word_CA50 / -96;
+            y_speed = word_CA52 / 96;
+            x_sub = word_A808 * 92 + word_CA50;
+            y_sub = y_speed * 92 - 20;
+            poo_state = 148;
+            word_C0AE = 1;
+            place_window_as_top(instances[MAX_INSTANCES-1]);
+            place_window_as_top(dude);
+        case 148:
+            if (frame_period_counter++ < 0) {
+                break;
+            }
+            frame_period_counter = 0;
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            x_curr += word_A808;
+            y_curr += y_speed;
+            sprite_index = animation_falling_van[0];
+
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_sub + 10 > x_curr || y_sub + 20 < y_curr) {
+                animation_frame = 0;
+                poo_state = 149;
+                sprite_index = 173;
+                update_sprite(x_curr, y_curr, sprite_index);
+                break;
+            }
+            break;
+        case 149:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr = -80;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (animation_frame == 0) {
+                play_sound(111, 0U, 0);
+            }
+            sprite_index_sub = animation_crash[animation_frame++];
+            if (sprite_index_sub == 0) {
+                x_curr = x_sub;
+                y_curr = y_sub;
+                animation_frame = 0;
+                poo_state = 150;
+                break;
+            }
+            update_sprite_sub(x_sub, y_sub, sprite_index_sub);
+            break;
+        case 150:
+            sprite_index = 169;
+            sprite_index = word_A49E[animation_frame];
+            animation_frame += 1;
+            if (sprite_index == 0) {
+                sprite_index = 3;
+                poo_state = 151;
+                break;
+            }
+            if (sprite_index >= 81 && sprite_index <= 83) {
+                update_sprite(x_curr, y_curr - 20, sprite_index);
+            } else {
+                update_sprite(x_curr, y_curr, sprite_index);
+            }
+            break;
+        case 151:
+            if (frame_period_counter++ < 1) {
+                break;
+            }
+            frame_period_counter = 0;
+            x_curr -= facing_direction * 6;
+            sprite_index = sprite_index == 2 ? 3 : 2;
+            update_sprite(x_curr, y_curr, sprite_index);
+            if (x_curr < -40) {
+                destroy_subwindow();
+                poo_state = 1;
+                break;
+            }
+            break;
+        case 152:
+            break;
+        default:
+            break;
     }
 }
 
 /* Environment-affected action change, controlled by a flag. */
-void sub_8FD7(int arg_0)
-{
+void sub_8FD7(int arg_0) {
     switch (arg_0) {
-    case 0:
-        word_A8A0 = 1;
-        if (word_A7FC != 0) {
-            word_A8A0 = 97;
-        }
-        break;
-    case 1:
-        word_A8A0 = 81;
-        break;
-    case 2:
-        word_A8A0 = 97;
-        break;
-    case 3:
-        word_CA54 = 113;
-        break;
-    case 4:
-        word_A8A0 = 56;
-        break;
-    default:
-        break;
+        case 0:
+            poo_state = 1;
+            if (word_A7FC != 0) {
+                poo_state = 97;
+            }
+            break;
+        case 1:
+            poo_state = 81;
+            break;
+        case 2:
+            poo_state = 97;
+            break;
+        case 3:
+            word_CA54 = 113;
+            break;
+        case 4:
+            poo_state = 56;
+            break;
+        default:
+            break;
     }
 }
 
 /* Process debug window action change. */
-void sub_904A(WPARAM arg_0)
-{
+void set_state_debug(WPARAM arg_0) {
+
     word_CA72 = 0;
     sub_428E();
-    sub_2A96();
+    destroy_subwindow();
     switch (arg_0) {
-    case 0:
-        word_A8A0 = 1;
-        break;
-    case 1:
-        word_A8A0 = 7;
-        break;
-    case 2:
-        word_A8A0 = 11;
-        break;
-    case 3:
-        word_A8A0 = 13;
-        break;
-    case 4:
-        word_A8A0 = 15;
-        break;
-    case 5:
-        word_A8A0 = 17;
-        break;
-    case 6:
-        word_A8A0 = 20;
-        break;
-    case 7:
-        word_A8A0 = 24;
-        break;
-    case 8:
-        word_A8A0 = 30;
-        break;
-    case 9:
-        word_A8A0 = 35;
-        break;
-    case 10:
-        word_A8A0 = 43;
-        break;
-    case 11:
-        word_A8A0 = 45;
-        break;
-    case 12:
-        word_A8A0 = 49;
-        break;
-    case 13:
-        word_A8A0 = 51;
-        break;
-    case 14:
-        word_A8A0 = 53;
-        break;
-    case 15:
-        word_A8A0 = 58;
-        break;
-    case 16:
-        word_A8A0 = 47;
-        break;
-    case 17:
-        word_A8A0 = 147;
-        break;
-    case 18:
-        word_A8A0 = 116;
-        break;
-    case 19:
-        word_A8A0 = 121;
-        break;
-    case 20:
-        word_A8A0 = 126;
-        break;
-    case 21:
-        word_A8A0 = 128;
-        break;
-    case 22:
-        word_A8A0 = 135;
-        break;
-    case 23:
-        word_A8A0 = 142;
-        break;
-    case 24:
-        word_A8A0 = 65;
-        break;
-    case 25:
-        word_A8A0 = 62;
-        break;
-    case 26:
-        word_A8A0 = 75;
-        break;
-    case 27:
-        word_A8A0 = 96;
-        break;
-    case 28:
-        word_A8A0 = 9;
-        break;
-    case 29:
-        word_A8A0 = 69;
-        break;
-    default:
-        break;
+        case 0:
+            poo_state = 1;
+            break;
+        case 1:
+            poo_state = 7;
+            break;
+        case 2:
+            poo_state = 11;
+            break;
+        case 3:
+            poo_state = 13;
+            break;
+        case 4:
+            poo_state = 15;
+            break;
+        case 5:
+            poo_state = 17;
+            break;
+        case 6:
+            poo_state = 20;
+            break;
+        case 7:
+            poo_state = 24;
+            break;
+        case 8:
+            poo_state = 30;
+            break;
+        case 9:
+            poo_state = 35;
+            break;
+        case 10:
+            poo_state = 43;
+            break;
+        case 11:
+            poo_state = 45;
+            break;
+        case 12:
+            poo_state = 49;
+            break;
+        case 13:
+            poo_state = 51;
+            break;
+        case 14:
+            poo_state = 53;
+            break;
+        case 15:
+            poo_state = 58;
+            break;
+        case 16:
+            poo_state = 47;
+            break;
+        case 17:
+            poo_state = 147;
+            break;
+        case 18:
+            poo_state = 116;
+            break;
+        case 19:
+            poo_state = 121;
+            break;
+        case 20:
+            poo_state = 126;
+            break;
+        case 21:
+            poo_state = 128;
+            break;
+        case 22:
+            poo_state = 135;
+            break;
+        case 23:
+            poo_state = 142;
+            break;
+        case 24:
+            poo_state = 65;
+            break;
+        case 25:
+            poo_state = 62;
+            break;
+        case 26:
+            poo_state = 75;
+            break;
+        case 27:
+            poo_state = 96;
+            break;
+        case 28:
+            poo_state = 9;
+            break;
+        case 29:
+            poo_state = 69;
+            break;
+        case 34: // roll animation
+            poo_state = 34;
+            break;
+        default:
+            break;
     }
 }
 
 /* Move window by offset. */
-void sub_91CD(int arg_0, int arg_2)
-{
-    word_A800 += arg_0;
-    word_A802 += arg_2;
-    sub_4807(word_A800, word_A802, word_A804);
+void sub_91CD(int arg_0, int arg_2) {
+    x_curr += arg_0;
+    y_curr += arg_2;
+    update_sprite(x_curr, y_curr, sprite_index);
 }
 
 /* Initialize bitmaps (sub). */
@@ -5060,12 +5062,12 @@ void sub_9350(int arg_0, int arg_2, int arg_4)
 {
     word_A878 = arg_0;
     word_A87A = arg_2;
-    word_A856 = stru_A8A2[arg_4].bitmaps[0];
-    word_A858 = stru_A8A2[arg_4].bitmaps[1];
-    word_A85E = stru_A8A2[arg_4].x;
-    word_A860 = stru_A8A2[arg_4].y;
-    word_A87C = stru_A8A2[arg_4].width;
-    word_A87E = stru_A8A2[arg_4].height;
+    word_A856 = sprites[arg_4].bitmaps[0];
+    word_A858 = sprites[arg_4].bitmaps[1];
+    word_A85E = sprites[arg_4].x;
+    word_A860 = sprites[arg_4].y;
+    word_A87C = sprites[arg_4].width;
+    word_A87E = sprites[arg_4].height;
 }
 
 /* Clear window (sub). */
@@ -5085,8 +5087,7 @@ void sub_93DF(HWND arg_0)
 }
 
 /* Render sprite with double buffering (with fade out effect) (sub). */
-void sub_9438(HWND arg_0)
-{
+void fade_out(HWND arg_0) {
     HDC var_2;
     HDC var_4;
     HDC var_6;
@@ -5165,11 +5166,11 @@ void sub_9438(HWND arg_0)
                     BitBlt(var_6, 0, 0, 40, 40, var_4, word_A85E, word_A860, SRCCOPY);
                 }
                 SelectObject(var_4, word_A85C);
-                SelectObject(var_6, stru_A8A2[172].bitmaps[0]);
-                BitBlt(var_4, word_CA46 - 1, word_CA46 - 1, 41 - word_CA46, 40, var_6, stru_A8A2[172].x, 0, SRCPAINT);
+                SelectObject(var_6, sprites[FADE_OUT_INDEX].bitmaps[0]);
+                BitBlt(var_4, word_CA46 - 1, word_CA46 - 1, 41 - word_CA46, 40, var_6, sprites[FADE_OUT_INDEX].x, 0, SRCPAINT);
                 SelectObject(var_4, word_A85A);
-                SelectObject(var_6, stru_A8A2[172].bitmaps[1]);
-                BitBlt(var_4, word_CA46 - 1, word_CA46 - 1, 41 - word_CA46, 40, var_6, stru_A8A2[172].x, 0, SRCAND);
+                SelectObject(var_6, sprites[FADE_OUT_INDEX].bitmaps[1]);
+                BitBlt(var_4, word_CA46 - 1, word_CA46 - 1, 41 - word_CA46, 40, var_6, sprites[FADE_OUT_INDEX].x, 0, SRCAND);
                 SelectObject(var_6, word_A854);
                 SelectObject(var_4, word_A85C);
                 BitBlt(var_6, var_16, var_14, word_A87C, word_A87E, var_4, 0, 0, SRCAND);
