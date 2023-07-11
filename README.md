@@ -36,3 +36,6 @@ Poe's voice: HARA Masumi
 Skin made by Mwti
 
 with love, for jacex
+
+![image](https://github.com/Mwteusz/Dude/assets/97027005/c56a2d99-8b17-40e0-887b-ea8e0a3fe4d6)
+
